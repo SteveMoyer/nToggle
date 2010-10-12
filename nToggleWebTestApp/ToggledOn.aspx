@@ -8,10 +8,10 @@
     <title></title>
 </head>
 <body>
-   <nToggle:FeatureToggle ID="FeatureToggle1" FeatureName="TestFeatureOn" runat="server" >
+   <nToggle:FeatureToggle ID="FeatureToggle1" EnabledBy="TestFeatureOn" runat="server" >
     Turned On
     </nToggle:FeatureToggle>
-    <nToggle:FeatureToggle ID="FeatureToggle2" FeatureName="TestFeatureOn" Reversed="true" runat="server" >
+    <nToggle:FeatureToggle ID="FeatureToggle2" RemovedBy="TestFeatureOn" runat="server" >
     Turned On But Reversed
     </nToggle:FeatureToggle>
 </body>

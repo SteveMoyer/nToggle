@@ -1,21 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace nToggle
 {
-   public class FeatureToggleFactory:IFeatureToggleFactory
+   public class FeatureStatusFactory:IFeatureStatusFactory
     {
 
-       IFeatureToggleRepository _ToggleRepository;
-       public FeatureToggleFactory(IFeatureToggleRepository repository){
+       IFeatureStatusRepository _ToggleRepository;
+       public FeatureStatusFactory(IFeatureStatusRepository repository){
            _ToggleRepository = repository;
        }
 
-       public FeatureToggleFactory()
+       public FeatureStatusFactory()
        {
-           _ToggleRepository = new AppSettingsToggleRepository();
+           _ToggleRepository = new AppSettingsFeatureStatusRepository();
        }
 
 

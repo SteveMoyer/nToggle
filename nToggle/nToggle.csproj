@@ -43,12 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppSettingsToggleRepository.cs" />
+    <Compile Include="AppSettingsFeatureStatusRepository.cs" />
     <Compile Include="FeatureStatus.cs" />
     <Compile Include="FeatureToggle.cs" />
-    <Compile Include="FeatureToggleFactory.cs" />
-    <Compile Include="IFeatureToggleFactory.cs" />
+    <Compile Include="FeatureStatusFactory.cs" />
+    <Compile Include="IFeatureStatusFactory.cs" />
     <Compile Include="IFeatureToggleRepository.cs" />
+    <Compile Include="InvalidMarkupException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

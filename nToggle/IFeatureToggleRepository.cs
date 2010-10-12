@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace nToggle
 {
-    public interface IFeatureToggleRepository
+    public interface IFeatureStatusRepository
     {
          bool GetToggleStatus(string toggleName);
       

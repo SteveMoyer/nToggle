@@ -13,19 +13,19 @@ namespace nToggleTest
         [TestMethod]
         public void ShouldReturnFalseWhenFalseInConfig()
         {
-            var repo = new AppSettingsToggleRepository();
+            var repo = new AppSettingsFeatureStatusRepository();
             Assert.AreEqual(false, repo.GetToggleStatus("TestFeatureOff"));
         }
         [TestMethod]
         public void ShouldReturnTrueWhenTrueInConfig()
         {
-            var repo = new AppSettingsToggleRepository();
+            var repo = new AppSettingsFeatureStatusRepository();
             Assert.AreEqual(true, repo.GetToggleStatus("TestFeatureOn"));
         }
         [TestMethod]
         public void ShouldReturnFalseIfNotInConfig()
         {
-            var repo = new AppSettingsToggleRepository();
+            var repo = new AppSettingsFeatureStatusRepository();
             Assert.AreEqual(false, repo.GetToggleStatus("NotPresent"));
         }
     }

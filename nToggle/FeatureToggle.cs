@@ -8,51 +8,74 @@ namespace nToggle
     [ToolboxData("<{0}:FeatureToggle runat=server></{0}:FeatureToggle>")]
     public class FeatureToggle : Panel
     {
-        bool _Reversed = false;
-        string _FeatureName = "";
-
+        private IFeatureStatusFactory _FeatureFactory;
+        string _removedBy = "";
+        string _enabledBy = "";
+        public FeatureToggle(IFeatureStatusFactory featureFactory)
+        {
+            _FeatureFactory = featureFactory;
+        }
+        public FeatureToggle()
+        {
+            _FeatureFactory = new FeatureStatusFactory();
+        }
         [Bindable(true)]
-        [Category("Appearance")]
+        
         [DefaultValue("")]
         [Localizable(true)]
-        public string FeatureName
+        public string EnabledBy
         {
             get
             {
-
-                return _FeatureName;
+                return _enabledBy;
             }
 
             set
             {
-                _FeatureName = value;
+                _enabledBy = value;
             }
         }
         [Bindable(true)]
-        [Category("Appearance")]
+       
         [DefaultValue("false")]
         [Localizable(true)]
-        public bool Reversed
+        public string RemovedBy
         {
             get
             {
-                return _Reversed;
+                return _removedBy;
             }
 
             set
             {
-                _Reversed = value;
+                _removedBy = value;
             }
         }
 
-        protected override void OnInit(EventArgs e)
+        private void ValidateProperties()
         {
-            IFeatureToggleFactory featureFactory = new FeatureToggleFactory();
-            var  featureToggle=featureFactory.GetFeatureStatus(FeatureName,Reversed);
-            if (!featureToggle.IsOn)
+            if (!String.IsNullOrWhiteSpace(RemovedBy) && !string.IsNullOrWhiteSpace(EnabledBy))
+                throw new InvalidMarkupException("You must use RemovedBy or EnabledBy but not both");
+
+            if (string.IsNullOrWhiteSpace(RemovedBy) && string.IsNullOrWhiteSpace(EnabledBy))
+                throw new InvalidMarkupException("You must use RemovedBy or EnabledBy");
+        }
+        public void ApplyToggle()
+        {
+            ValidateProperties();
+            
+            string featureName = string.IsNullOrWhiteSpace(EnabledBy) ? RemovedBy : EnabledBy;
+            Boolean reversed = string.IsNullOrWhiteSpace(EnabledBy);
+
+            var featureStatus = _FeatureFactory.GetFeatureStatus(featureName, reversed);
+            if (!featureStatus.IsOn)
             {
                 Controls.Clear();
             }
+        }
+        protected override void OnInit(EventArgs e)
+        {
+            ApplyToggle();
         }
     }
 }

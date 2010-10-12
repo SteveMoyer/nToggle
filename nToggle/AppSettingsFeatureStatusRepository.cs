@@ -5,7 +5,7 @@ using System.Text;
 using System.Configuration;
 namespace nToggle
 {
-   public  class AppSettingsToggleRepository:IFeatureToggleRepository
+   public  class AppSettingsFeatureStatusRepository:IFeatureStatusRepository
     {
        public bool GetToggleStatus(string toggleName)
        {
