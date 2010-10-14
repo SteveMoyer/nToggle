@@ -11,12 +11,14 @@ namespace nToggleTest
     {
         private Mock<IFeatureStatusFactory> _MockFeatureStatusFactory;
         private FeatureToggle _FeatureToggle;
+        
         [SetUp]
         public void Setup()
         {
             _MockFeatureStatusFactory = new Mock<IFeatureStatusFactory>();
             _FeatureToggle = new FeatureToggle(_MockFeatureStatusFactory.Object);
         }
+        
         [Test]
         public void ShouldNotClearControlsWhenFeatureEnabled()
         {
@@ -26,9 +28,8 @@ namespace nToggleTest
             _FeatureToggle.ApplyToggle();
 
             Assert.AreEqual(1, _FeatureToggle.Controls.Count);
-            
-
         }
+
         [Test]
         public void ShouldClearControlsWhenFeatureNotEnabled()
         {
@@ -38,9 +39,8 @@ namespace nToggleTest
             _FeatureToggle.ApplyToggle();
 
             Assert.AreEqual(0, _FeatureToggle.Controls.Count);
-
-
         }
+
         [Test]
         public void ShouldClearControlsWhenFeatureRemoved()
         {
@@ -50,8 +50,7 @@ namespace nToggleTest
             _FeatureToggle.ApplyToggle();
 
             Assert.AreEqual(0, _FeatureToggle.Controls.Count);
-
-
+            
         }
         [Test]
         public void ShouldNotClearControlsWhenFeatureNotRemoved()
@@ -62,8 +61,20 @@ namespace nToggleTest
             _FeatureToggle.ApplyToggle();
 
             Assert.AreEqual(1, _FeatureToggle.Controls.Count);
-
-
         }
+        
+        [Test, ExpectedException(typeof(InvalidMarkupException))]
+        public void ShouldThrowExceptionWhenBothEnabledAndRemovedByUsed()
+        {
+            _FeatureToggle.RemovedBy = "fake";
+            _FeatureToggle.EnabledBy = "fake";
+            _FeatureToggle.ApplyToggle();
+        }
+        [Test, ExpectedException(typeof(InvalidMarkupException))]
+        public void ShouldThrowExceptionWhenNeitherEnabledOrRemovedByUsed()
+        {
+            _FeatureToggle.ApplyToggle();
+        }
+
     }
 }

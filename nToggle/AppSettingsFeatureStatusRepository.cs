@@ -10,9 +10,8 @@ namespace nToggle
        public bool GetToggleStatus(string toggleName)
        {
            var value = ConfigurationManager.AppSettings[toggleName];
-           if (value == null)
-               return false;
-           return Boolean.Parse(value);
+          
+           return value == null? false: Boolean.Parse(value);
        }
     }
 }
