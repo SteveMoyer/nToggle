@@ -1,22 +1,23 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Web.UI.WebControls;
 using nToggle;
 using Moq;
+using NUnit.Framework;
 
 namespace nToggleTest
 {
-    [TestClass]
+    [TestFixture]
     public class FeatureToggleTest
     {
         private Mock<IFeatureStatusFactory> _MockFeatureStatusFactory;
-        private nToggle.FeatureToggle _FeatureToggle;
-        public FeatureToggleTest()
+        private FeatureToggle _FeatureToggle;
+        [SetUp]
+        public void Setup()
         {
             _MockFeatureStatusFactory = new Mock<IFeatureStatusFactory>();
             _FeatureToggle = new FeatureToggle(_MockFeatureStatusFactory.Object);
         }
-        [TestMethod]
+        [Test]
         public void ShouldNotClearControlsWhenFeatureEnabled()
         {
             _FeatureToggle.Controls.Add(new Literal());
@@ -28,7 +29,7 @@ namespace nToggleTest
             
 
         }
-        [TestMethod]
+        [Test]
         public void ShouldClearControlsWhenFeatureNotEnabled()
         {
             _FeatureToggle.Controls.Add(new Literal());
@@ -40,7 +41,7 @@ namespace nToggleTest
 
 
         }
-        [TestMethod]
+        [Test]
         public void ShouldClearControlsWhenFeatureRemoved()
         {
             _FeatureToggle.Controls.Add(new Literal());
@@ -52,7 +53,7 @@ namespace nToggleTest
 
 
         }
-        [TestMethod]
+        [Test]
         public void ShouldNotClearControlsWhenFeatureNotRemoved()
         {
             _FeatureToggle.Controls.Add(new Literal());

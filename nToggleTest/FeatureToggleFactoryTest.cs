@@ -1,42 +1,44 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using nToggle;
 using Moq;
+using NUnit.Framework;
 namespace nToggleTest
 {
-    [TestClass]
+    [TestFixture]
     public class FeatureToggleFactoryTest
     {
 
         private FeatureStatusFactory _Factory;
         private Mock<IFeatureStatusRepository> _repo ;
-        public FeatureToggleFactoryTest() 
+        [SetUp]
+        public void Setup() 
         {
             _repo = new Moq.Mock<IFeatureStatusRepository>();
             _Factory = new FeatureStatusFactory(_repo.Object);
             
         }
 
-        [TestMethod]
+        [Test]
         public void ShouldReturnToggledOnWhenOn()
         {
 
             _repo.Setup<bool>(repos => repos.GetToggleStatus("fake")).Returns(true);
             Assert.AreEqual(true, _Factory.GetFeatureStatus("fake").IsOn);
         }
-        [TestMethod]
+        [Test]
         public void ShouldReturnNotToggledOnWhenOff()
         {
             _repo.Setup<bool>(repos => repos.GetToggleStatus("fake")).Returns(false);
             Assert.AreEqual(false, _Factory.GetFeatureStatus("fake").IsOn);
         }
-        [TestMethod]
+        [Test]
         public void ShouldReturnToggledOnWhenOffAndReversed()
         {
             _repo.Setup<bool>(repos => repos.GetToggleStatus("fake")).Returns(false);
             Assert.AreEqual(true, _Factory.GetFeatureStatus("fake", true).IsOn);
         }
-        [TestMethod]
+        [Test]
         public void ShouldReturnNotToggledOnWhenOnAndReversed()
         {
             _repo.Setup<bool>(repos => repos.GetToggleStatus("fake")).Returns(true);

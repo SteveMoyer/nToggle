@@ -1,0 +1,1648 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebDriver.IE</name>
+    </assembly>
+    <members>
+        <member name="T:OpenQA.Selenium.IE.Finder">
+            <summary>
+            Wrapper class for finding elements
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.Finder.#ctor(OpenQA.Selenium.IE.InternetExplorerDriver,OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle)">
+            <summary>
+            Initializes a new instance of the Finder class.
+            </summary>
+            <param name="driver">InternetExplorerDriver in use</param>
+            <param name="parent">ElementHandle to for use with the Native methods</param>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.Finder.FindElementById(System.String)">
+            <summary>
+            Find the first element that has this ID
+            </summary>
+            <param name="id">ID of web element on the page</param>
+            <returns>Returns a IWebElement to use</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.Finder.FindElementsById(System.String)">
+            <summary>
+            Finds the first element in the page that matches the ID supplied
+            </summary>
+            <param name="id">ID of the Element</param>
+            <returns>ReadOnlyCollection of Elements that match the object so that you can interact that object</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.Finder.FindElementByLinkText(System.String)">
+            <summary>
+            Finds the first of elements that match the link text supplied
+            </summary>
+            <param name="linkText">Link text of element </param>
+            <returns>IWebElement object so that you can interact that object</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.Finder.FindElementsByLinkText(System.String)">
+            <summary>
+            Finds a list of elements that match the link text supplied
+            </summary>
+            <param name="linkText">Link text of element</param>
+            <returns>ReadOnlyCollection of IWebElement object so that you can interact with those objects</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.Finder.FindElementByName(System.String)">
+            <summary>
+            Find the first element that matches by name
+            </summary>
+            <param name="name">Name of the element</param>
+            <returns>IWebElement object so that you can interact that object</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.Finder.FindElementsByName(System.String)">
+            <summary>
+            Find all the elements that match the name
+            </summary>
+            <param name="name">Name of element on the page</param>
+            <returns>ReadOnlyCollection ofIWebElement object so that you can interact that object</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.Finder.FindElementByXPath(System.String)">
+            <summary>
+            Find the first element that matches the XPath
+            </summary>
+            <param name="xpath">XPath to the element</param>
+            <returns>IWebElement object so that you can interact that object</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.Finder.FindElementsByXPath(System.String)">
+            <summary>
+            Find all the elements taht match the XPath
+            </summary>
+            <param name="xpath">XPath to the element</param>
+            <returns>ReadOnlyCollection of IWebElement object so that you can interact that object</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.Finder.FindElementByTagName(System.String)">
+            <summary>
+            Find the first element that matches the tag
+            </summary>
+            <param name="tagName">tagName of element on the page</param>
+            <returns>IWebElement object so that you can interact that object</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.Finder.FindElementsByTagName(System.String)">
+            <summary>
+            Find all elements that match the tag
+            </summary>
+            <param name="tagName">tagName of element on the page</param>
+            <returns>ReadOnlyCollection of IWebElement object so that you can interact that object</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.Finder.FindElementByPartialLinkText(System.String)">
+            <summary>
+            Find the first element that matches part of the text
+            </summary>
+            <param name="partialLinkText">text to be use</param>
+            <returns>IWebElement object so that you can interact that object</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.Finder.FindElementsByPartialLinkText(System.String)">
+            <summary>
+            Method to return all elements that match the link text passed in
+            </summary>
+            <param name="partialLinkText">Text to search for</param>
+            <returns>Returns a ReadOnlyCollection of IWebElements so you can interact with that object</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.Finder.FindElementByClassName(System.String)">
+            <summary>
+            Method to return the first element that matches the CSS class passed in
+            </summary>
+            <param name="className">CSS class name</param>
+            <returns>IWebElement object so that you can interact that object</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.Finder.FindElementsByClassName(System.String)">
+            <summary>
+            Method to find all the elements on the page that match the CSS Classname
+            </summary>
+            <param name="className"> CSS Class you wish to find</param>
+            <returns>ReadOnlyCollection of IWebElement objects so that you can interact those objects</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.Finder.FindElement(OpenQA.Selenium.By)">
+            <summary>
+            Find the first element that matches the By mechanism
+            </summary>
+            <param name="by">By mechanism</param>
+            <returns>IWebElement object so that you can interact that object</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.Finder.FindElements(OpenQA.Selenium.By)">
+            <summary>
+            Find all Elements that match the By mechanism
+            </summary>
+            <param name="by">By mechanism</param>
+            <returns>ReadOnlyCollection of IWebElement objects so that you can interact those objects</returns>
+        </member>
+        <member name="T:OpenQA.Selenium.IE.InternetExplorerDriver">
+            <summary>
+            Provides a way to access Internet Explorer to run your tests by creating a InternetExplorerDriver instance
+            </summary>
+            <remarks>
+            When the WebDriver object has been instantiated the browser will load. The test can then navigate to the URL under test and 
+            start your test.
+            </remarks>
+            <example>
+            <code>
+            [TestFixture]
+            public class Testing
+            {
+                private IWebDriver driver;
+                <para></para>
+                [SetUp]
+                public void SetUp()
+                {
+                    driver = new InternetExplorerDriver();
+                }
+                <para></para>
+                [Test]
+                public void TestGoogle()
+                {
+                    driver.Navigate().GoToUrl("http://www.google.co.uk");
+                    /*
+                    *   Rest of the test
+                    */
+                }
+                <para></para>
+                [TearDown]
+                public void TearDown()
+                {
+                    driver.Quit();
+                    driver.Dispose();
+                } 
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.#ctor">
+            <summary>
+            Initializes a new instance of the InternetExplorerDriver class.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.Close">
+            <summary>
+            Closes the Browser.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.Quit">
+            <summary>
+            Close the Browser and Dispose of WebDriver.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.ExecuteScript(System.String,System.Object[])">
+            <summary>
+            Executes JavaScript in the context of the currently selected frame or window.
+            </summary>
+            <param name="script">The JavaScript code to execute.</param>
+            <param name="args">The arguments to the script.</param>
+            <returns>The value returned by the script.</returns>
+            <remarks>
+            <para>
+            The <see cref="M:OpenQA.Selenium.IE.InternetExplorerDriver.ExecuteScript(System.String,System.Object[])"/>method executes JavaScript in the context of 
+            the currently selected frame or window. This means that "document" will refer 
+            to the current document. If the script has a return value, then the following 
+            steps will be taken:
+            </para>
+            <para>
+            <list type="bullet">
+            <item><description>For an HTML element, this method returns a <see cref="T:OpenQA.Selenium.IWebElement"/></description></item>
+            <item><description>For a number, a <see cref="T:System.Int64"/> is returned</description></item>
+            <item><description>For a boolean, a <see cref="T:System.Boolean"/> is returned</description></item>
+            <item><description>For all other cases a <see cref="T:System.String"/> is returned.</description></item>
+            <item><description>For an array,we check the first element, and attempt to return a 
+            <see cref="T:System.Collections.Generic.List`1"/> of that type, following the rules above. Nested lists are not
+            supported.</description></item>
+            <item><description>If the value is null or there is no return value,
+            <see langword="null"/> is returned.</description></item>
+            </list>
+            </para>
+            <para>
+            Arguments must be a number (which will be converted to a <see cref="T:System.Int64"/>),
+            a <see cref="T:System.Boolean"/>, a <see cref="T:System.String"/> or a <see cref="T:OpenQA.Selenium.IWebElement"/>.
+            An exception will be thrown if the arguments do not meet these criteria. 
+            The arguments will be made available to the JavaScript via the "arguments" magic 
+            variable, as if the function were called via "Function.apply" 
+            </para>
+            </remarks>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.GetWindowHandles">
+            <summary>
+            Method for returning a collection of WindowHandles that the driver has access to.
+            </summary>
+            <returns>Returns a ReadOnlyCollection of Window Handles.</returns>
+            <example>
+            IWebDriver driver = new InternetExplorerDriver();
+            ReadOnlyCollection<![CDATA[<string>]]> windowNames = driver.GetWindowHandles();
+            </example>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.GetWindowHandle">
+            <summary>
+            Returns the Name of Window that the driver is working in.
+            </summary>
+            <returns>Returns the name of the Window.</returns>
+            <example>
+            IWebDriver driver = new InternetExplorerDriver();
+            string windowName = driver.GetWindowHandles();
+            </example>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.SwitchTo">
+            <summary>
+            Method to give you access to switch frames and windows.
+            </summary>
+            <returns>Returns an Object that allows you to Switch Frames and Windows.</returns>
+            <example>
+            <code>
+            IWebDriver driver = new InternetExplorerDriver();
+            driver.SwitchTo().Frame("FrameName");
+            </code>
+            </example>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.Manage">
+            <summary>
+            Method For getting an object to set the Speed.
+            </summary>
+            <returns>Returns an IOptions object that allows the driver to set the speed and cookies and getting cookies.</returns>
+            <example>
+            <code>
+            IWebDriver driver = new InternetExplorerDriver();
+            driver.Manage().GetCookies();
+            </code>
+            </example>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.Navigate">
+            <summary>
+            Method to allow you to Navigate with WebDriver.
+            </summary>
+            <returns>Returns an INavigation Object that allows the driver to navigate in the browser.</returns>
+            <example>
+            <code>
+                IWebDriver driver = new InternetExplorerDriver();
+                driver.Navigate().GoToUrl("http://www.google.co.uk");
+            </code>
+            </example>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.FindElements(OpenQA.Selenium.By)">
+            <summary>
+            Finds the elements on the page by using the <see cref="T:OpenQA.Selenium.By"/> object and returns a ReadOnlyCollection of the Elements on the page.
+            </summary>
+            <param name="by">By mechanism for finding the element.</param>
+            <returns>ReadOnlyCollection of IWebElement.</returns>
+            <example>
+            <code>
+            IWebDriver driver = new InternetExplorerDriver();
+            ReadOnlyCollection<![CDATA[<IWebElement>]]> classList = driver.FindElements(By.ClassName("class"));
+            </code>
+            </example>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.FindElement(OpenQA.Selenium.By)">
+            <summary>
+            Finds the first element in the page that matches the <see cref="T:OpenQA.Selenium.By"/> object.
+            </summary>
+            <param name="by">By mechanism for finding the element.</param>
+            <returns>IWebElement object so that you can interction that object.</returns>
+            <example>
+            <code>
+            IWebDriver driver = new InternetExplorerDriver();
+            IWebElement elem = driver.FindElement(By.Name("q"));
+            </code>
+            </example>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.GetScreenshot">
+            <summary>
+            Gets a <see cref="T:OpenQA.Selenium.Screenshot"/> object representing the image of the page on the screen.
+            </summary>
+            <returns>A <see cref="T:OpenQA.Selenium.Screenshot"/> object containing the image.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.Dispose">
+            <summary>
+            Disposes of all unmanaged instances of InternetExplorerDriver.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.GetUnderlayingHandle">
+            <summary>
+            Get the driver handle.
+            </summary>
+            <returns>The underlying handle.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.WaitForLoadToComplete">
+            <summary>
+            Wait for the load to complete.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.IE.InternetExplorerDriver.Url">
+            <summary>
+            Gets or sets the URL the browser is currently displaying.
+            </summary>
+            <seealso cref="P:OpenQA.Selenium.IWebDriver.Url"/>
+            <seealso cref="M:OpenQA.Selenium.INavigation.GoToUrl(System.String)"/>
+            <seealso cref="M:OpenQA.Selenium.INavigation.GoToUrl(System.Uri)"/>
+        </member>
+        <member name="P:OpenQA.Selenium.IE.InternetExplorerDriver.Title">
+            <summary>
+            Gets the title of the current browser window.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.IE.InternetExplorerDriver.Visible">
+            <summary>
+            Gets or sets a value indicating whether the browser is visible.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.IE.InternetExplorerDriver.PageSource">
+            <summary>
+            Gets the source of the page last loaded by the browser.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.IE.InternetExplorerDriver.IsJavaScriptEnabled">
+            <summary>
+            Gets a value indicating whether JavaScript is enabled for this browser.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.IE.InternetExplorerDriver.InternetExplorerOptions">
+            <summary>
+            Provides a mechanism for setting options needed for the driver during the test.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.InternetExplorerOptions.#ctor(OpenQA.Selenium.IE.InternetExplorerDriver)">
+            <summary>
+            Initializes a new instance of the InternetExplorerOptions class.
+            </summary>
+            <param name="driver">Instance of the driver currently in use.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.InternetExplorerOptions.AddCookie(OpenQA.Selenium.Cookie)">
+            <summary>
+            Method for creating a cookie in the browser.
+            </summary>
+            <param name="cookie"><see cref="T:OpenQA.Selenium.Cookie"/> that represents a cookie in the browser.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.InternetExplorerOptions.GetCookies">
+            <summary>
+            Method for getting a Collection of Cookies that are present in the browser.
+            </summary>
+            <returns>ReadOnlyCollection of Cookies in the browser.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.InternetExplorerOptions.GetCookieNamed(System.String)">
+            <summary>
+            Method for returning a getting a cookie by name.
+            </summary>
+            <param name="name">name of the cookie that needs to be returned.</param>
+            <returns>The <see cref="T:OpenQA.Selenium.Cookie"/> with the name that was passed in.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.InternetExplorerOptions.DeleteAllCookies">
+            <summary>
+            Delete All Cookies that are present in the browser.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.InternetExplorerOptions.DeleteCookie(OpenQA.Selenium.Cookie)">
+            <summary>
+            Delete a cookie in the browser that is the.
+            </summary>
+            <param name="cookie">An object that represents a copy of the cookie that needs to be deleted.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.InternetExplorerOptions.DeleteCookieNamed(System.String)">
+            <summary>
+            Delete the cookie by passing in the name of the cookie.
+            </summary>
+            <param name="name">The name of the cookie that is in the browser.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.InternetExplorerOptions.Timeouts">
+            <summary>
+            Provides access to the timeouts defined for this driver.
+            </summary>
+            <returns>An object implementing the <see cref="T:OpenQA.Selenium.ITimeouts"/> interface.</returns>
+        </member>
+        <member name="P:OpenQA.Selenium.IE.InternetExplorerDriver.InternetExplorerOptions.Speed">
+            <summary>
+            Gets or sets the speed with which actions are executed in the browser.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.IE.InternetExplorerDriver.InternetExplorerOptions.InternetExplorerTimeouts">
+            <summary>
+            Defines the interface through which the user can define timeouts.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.InternetExplorerOptions.InternetExplorerTimeouts.#ctor(OpenQA.Selenium.IE.InternetExplorerDriver)">
+            <summary>
+            Initializes a new instance of the InternetExplorerTimeouts class
+            </summary>
+            <param name="driver">The driver that is currently in use</param>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.InternetExplorerOptions.InternetExplorerTimeouts.ImplicitlyWait(System.TimeSpan)">
+            <summary>
+            Specifies the amount of time the driver should wait when searching for an
+            element if it is not immediately present.
+            </summary>
+            <param name="timeToWait">A <see cref="T:System.TimeSpan"/> structure defining the amount of time to wait.</param>
+            <returns>A self reference</returns>
+            <remarks>
+            When searching for a single element, the driver should poll the page
+            until the element has been found, or this timeout expires before throwing
+            a <see cref="!:ElementNotFoundException"/>. When searching for multiple elements,
+            the driver should poll the page until at least one element has been found
+            or this timeout has expired.
+            <para>
+            Increasing the implicit wait timeout should be used judiciously as it
+            will have an adverse effect on test run time, especially when used with
+            slower location strategies like XPath.
+            </para>
+            </remarks>
+        </member>
+        <member name="T:OpenQA.Selenium.IE.InternetExplorerDriver.InternetExplorerTargetLocator">
+            <summary>
+            Provides a mechanism for finding elements on the page with locators.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.InternetExplorerTargetLocator.#ctor(OpenQA.Selenium.IE.InternetExplorerDriver)">
+            <summary>
+            Initializes a new instance of the InternetExplorerTargetLocator class.
+            </summary>
+            <param name="driver">The driver that is currently in use.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.InternetExplorerTargetLocator.Frame(System.Int32)">
+            <summary>
+            Move to a different frame using its index. Indexes are Zero based and their may be issues if a 
+            frame is named as an integer.
+            </summary>
+            <param name="frameIndex">The index of the frame.</param>
+            <returns>A WebDriver instance that is currently in use.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.InternetExplorerTargetLocator.Frame(System.String)">
+            <summary>
+            Move to different frame using its name.
+            </summary>
+            <param name="frameName">name of the frame.</param>
+            <returns>A WebDriver instance that is currently in use.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.InternetExplorerTargetLocator.Window(System.String)">
+            <summary>
+            Change to the Window by passing in the name.
+            </summary>
+            <param name="windowName">name of the window that you wish to move to.</param>
+            <returns>A WebDriver instance that is currently in use.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.InternetExplorerTargetLocator.DefaultContent">
+            <summary>
+            Move the driver back to the default.
+            </summary>
+            <returns>Empty frame to the driver.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.InternetExplorerTargetLocator.ActiveElement">
+            <summary>
+            Finds the currently active element.
+            </summary>
+            <returns>WebElement of the active element.</returns>
+        </member>
+        <member name="T:OpenQA.Selenium.IE.InternetExplorerDriver.InternetExplorerNavigation">
+            <summary>
+            Provides a mechanism for Navigating with the driver.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.InternetExplorerNavigation.#ctor(OpenQA.Selenium.IE.InternetExplorerDriver)">
+            <summary>
+            Initializes a new instance of the InternetExplorerNavigation class.
+            </summary>
+            <param name="driver">Driver in use</param>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.InternetExplorerNavigation.Back">
+            <summary>
+            Move the browser back.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.InternetExplorerNavigation.Forward">
+            <summary>
+            Move the browser forward.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.InternetExplorerNavigation.GoToUrl(System.Uri)">
+            <summary>
+            Navigate to a url for your test.
+            </summary>
+            <param name="url">Uri object of where you want the browser to go to.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.InternetExplorerNavigation.GoToUrl(System.String)">
+            <summary>
+            Navigate to a url for your test.
+            </summary>
+            <param name="url">string of the URL you want the browser to go to.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.InternetExplorerNavigation.Refresh">
+            <summary>
+            Refresh the browser.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.IE.InternetExplorerDriver.NullPathCookie">
+            <summary>
+            Provides a Null Path Cookie.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.NullPathCookie.#ctor(System.String,System.String,System.String,System.String,System.Nullable{System.DateTime})">
+            <summary>
+            Initializes a new instance of the NullPathCookie class.
+            </summary>
+            <param name="name">name of the cookie.</param>
+            <param name="value">value of the cookie.</param>
+            <param name="domain">domain of the cookie.</param>
+            <param name="path">path of the cookie.</param>
+            <param name="expiry">date when the cookie expires, can be null.</param>
+        </member>
+        <member name="P:OpenQA.Selenium.IE.InternetExplorerDriver.NullPathCookie.Path">
+            <summary>
+            Gets the value of the path from the cookie.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.IE.InternetExplorerWebElement">
+            <summary>
+            InternetExplorerWebElement allows you to have access to specific items that are found on the page.
+            </summary>
+            <seealso cref="T:OpenQA.Selenium.IRenderedWebElement"/>
+            <seealso cref="T:OpenQA.Selenium.ILocatable"/>
+            <example>
+            <code>
+            [Test]
+            public void TestGoogle()
+            {
+                driver = new InternetExplorerDriver();
+                InternetExplorerWebElement elem = driver.FindElement(By.Name("q"));
+                elem.SendKeys("Cheese please!");
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerWebElement.#ctor(OpenQA.Selenium.IE.InternetExplorerDriver,OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle)">
+            <summary>
+            Initializes a new instance of the InternetExplorerWebElement class.
+            </summary>
+            <param name="driver">Drive in use.</param>
+            <param name="wrapper">Wrapper of the handle to get.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerWebElement.Clear">
+            <summary>
+            Method to clear the text out of an Input element.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerWebElement.SendKeys(System.String)">
+            <summary>
+            Method for sending native key strokes to the browser.
+            </summary>
+            <param name="text">String containing what you would like to type onto the screen.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerWebElement.Submit">
+            <summary>
+            If this current element is a form, or an element within a form, then this will be submitted to the remote server. 
+            If this causes the current page to change, then this method will block until the new page is loaded.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerWebElement.Click">
+            <summary>
+            Click this element. If this causes a new page to load, this method will block until the page has loaded. At this point, you should discard all references to this element and any further operations performed on this element 
+            will have undefined behaviour unless you know that the element and the page will still be present. If this element is not clickable, then this operation is a no-op since it's pretty common for someone to accidentally miss 
+            the target when clicking in Real Life.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerWebElement.GetAttribute(System.String)">
+            <summary>
+            If this current element is a form, or an element within a form, then this will be submitted to the remote server. If this causes the current page to change, then this method will block until the new page is loaded.
+            </summary>
+            <param name="attributeName">Attribute you wish to get details of.</param>
+            <returns>The attribute's current value or null if the value is not set.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerWebElement.Select">
+            <summary>
+            Method to select or unselect element. This operation only applies to input elements such as checkboxes, options in a select and radio buttons.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerWebElement.Toggle">
+            <summary>
+            If the element is a checkbox this will toggle the elements state from selected to not selected, or from not selected to selected.
+            </summary>
+            <returns>Whether the toggled element is selected (true) or not (false) after this toggle is complete.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerWebElement.FindElements(OpenQA.Selenium.By)">
+            <summary>
+            Finds the elements on the page by using the <see cref="T:OpenQA.Selenium.By"/> object and returns a ReadOnlyCollection of the Elements on the page.
+            </summary>
+            <param name="by">By mechanism for finding the object.</param>
+            <returns>ReadOnlyCollection of IWebElement.</returns>
+            <example>
+            <code>
+            IWebDriver driver = new InternetExplorerDriver();
+            ReadOnlyCollection<![CDATA[<IWebElement>]]> classList = driver.FindElements(By.ClassName("class"));
+            </code>
+            </example>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerWebElement.FindElement(OpenQA.Selenium.By)">
+            <summary>
+            Finds the first element in the page that matches the <see cref="T:OpenQA.Selenium.By"/> object.
+            </summary>
+            <param name="by">By mechanism.</param>
+            <returns>IWebElement object so that you can interction that object.</returns>
+            <example>
+            <code>
+            IWebDriver driver = new InternetExplorerDriver();
+            IWebElement elem = driver.FindElement(By.Name("q"));
+            </code>
+            </example>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerWebElement.GetValueOfCssProperty(System.String)">
+            <summary>
+            Method to return the value of a CSS Property
+            </summary>
+            <param name="propertyName">CSS property key</param>
+            <returns>string value of the CSS property</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerWebElement.Hover">
+            <summary>
+            Moves the mouse over the element to do a hover.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerWebElement.DragAndDropBy(System.Int32,System.Int32)">
+            <summary>
+            Move to an element, MouseDown on the element and move it by passing in the how many pixels horizontally and vertically you wish to move it.
+            </summary>
+            <param name="moveRightBy">Integer to move it left or right.</param>
+            <param name="moveDownBy">Integer to move it up or down.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerWebElement.DragAndDropOn(OpenQA.Selenium.IRenderedWebElement)">
+            <summary>
+            Drag and Drop an element to another element.
+            </summary>
+            <param name="element">Element you wish to drop on.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerWebElement.Equals(System.Object)">
+            <summary>
+            Compares if two elements are equal.
+            </summary>
+            <param name="obj">Object to compare against.</param>
+            <returns>A boolean if it is equal or not.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerWebElement.GetHashCode">
+            <summary>
+            Method to get the hash code of the element.
+            </summary>
+            <returns>Interger of the hash code for the element.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerWebElement.Dispose">
+            <summary>
+            Dispose the Element.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerWebElement.AddToScriptArgs(OpenQA.Selenium.IE.SafeScriptArgsHandle)">
+            <summary>
+            Add to the script args.
+            </summary>
+            <param name="scriptArgs">Arguments to be added.</param>
+            <returns>A Driver result from adding it.</returns>
+        </member>
+        <member name="P:OpenQA.Selenium.IE.InternetExplorerWebElement.Text">
+            <summary>
+            Gets the text from the element.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.IE.InternetExplorerWebElement.TagName">
+            <summary>
+            Gets the DOM Tag of element.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.IE.InternetExplorerWebElement.Enabled">
+            <summary>
+            Gets a value indicating whether an element is currently enabled.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.IE.InternetExplorerWebElement.Value">
+            <summary>
+            Gets the value of the element's "value" attribute. If this value has been modified after the page has loaded (for example, through javascript) then this will reflect the current value of the "value" attribute.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.IE.InternetExplorerWebElement.Selected">
+            <summary>
+            Gets a value indicating whether this element is selected or not. This operation only applies to input elements such as checkboxes, options in a select and radio buttons.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.IE.InternetExplorerWebElement.LocationOnScreenOnceScrolledIntoView">
+            <summary>
+            Gets the Location of an element that is off the screen by scrolling and returns a Point object.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.IE.InternetExplorerWebElement.Location">
+            <summary>
+            Gets the Location of an element  and returns a Point object.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.IE.InternetExplorerWebElement.Size">
+            <summary>
+            Gets the <see cref="P:OpenQA.Selenium.IE.InternetExplorerWebElement.Size"/> of the element on the page.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.IE.InternetExplorerWebElement.Displayed">
+            <summary>
+            Gets a value indicating whether the object is currently being displayed.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.IE.InternetExplorerWebElement.WrappedDriver">
+            <summary>
+            Gets the <see cref="T:OpenQA.Selenium.IWebDriver"/> used to find this element.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.IE.InternetExplorerWebElement.Wrapper">
+            <summary>
+            Gets the wrappers handle.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.IE.InternetExplorerWebElementCollection">
+            <summary>
+            Collection of Elements from Internet Explorer
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerWebElementCollection.#ctor(OpenQA.Selenium.IE.InternetExplorerDriver,OpenQA.Selenium.IE.SafeWebElementCollectionHandle)">
+            <summary>
+            Initializes a new instance of the InternetExplorerWebElementCollection class
+            </summary>
+            <param name="driver">driver in use</param>
+            <param name="elements">Elements on the page</param>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerWebElementCollection.ToList">
+            <summary>
+            Converts a Collection of elements into a list
+            </summary>
+            <returns>List of IWebElement</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerWebElementCollection.Dispose">
+            <summary>
+            Dispose of the object
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.IE.NativeDriverLibrary">
+            <summary>
+            Provides a wrapper for the native-code Internet Explorer driver library.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.#ctor">
+            <summary>
+            Prevents a default instance of the <see cref="T:OpenQA.Selenium.IE.NativeDriverLibrary"/> class from being created.
+            </summary>
+            <remarks>This is a singleton class, so it does not require instantiation by consumers. They
+            should use the Instance property instead.</remarks>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.FreeDriver(System.IntPtr)">
+            <summary>
+            Releases all memory associated with an <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> instance.
+            </summary>
+            <param name="driverHandle">A pointer to the driver instance.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.FreeElement(System.IntPtr)">
+            <summary>
+            Releases all memory associated with an <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> instance.
+            </summary>
+            <param name="elementHandle">A pointer to the web element instance.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.FreeElementCollection(System.IntPtr,System.Int32)">
+            <summary>
+            Releases all memory associated with an <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElementCollection"/> instance.
+            </summary>
+            <param name="elementCollectionHandle">A pointer to the web element collection instance.</param>
+            <param name="freeElements">An integer value indicating whether or not to free the elements contained within the collection.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.FreeStringCollection(System.IntPtr)">
+            <summary>
+            Releases all memory associated with a <see cref="T:OpenQA.Selenium.IE.StringCollection"/> instance.
+            </summary>
+            <param name="stringCollectionHandle">A pointer to the string collection instance.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.FreeScriptArgs(System.IntPtr)">
+            <summary>
+            Releases all memory associated with a set of JavaScript arguments.
+            </summary>
+            <param name="scriptArgsHandle">A pointer to the script argument collection instance.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.FreeScriptResult(System.IntPtr)">
+            <summary>
+            Releases all memory associated with a JavaScript result.
+            </summary>
+            <param name="scriptResultHandle">A pointer to the result instance.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.FreeString(System.IntPtr)">
+            <summary>
+            Releases all memory associated with a string.
+            </summary>
+            <param name="stringHandle">A pointer to the string.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.Close(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle)">
+            <summary>
+            Closes the current driver window.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.NewDriverInstance(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle@)">
+            <summary>
+            Creates a new instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/>.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.ChangeCurrentUrl(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,System.String)">
+            <summary>
+            Navigates to a new URL.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="url">The URL to which to navigate.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.GoBack(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle)">
+            <summary>
+            Navigates back one entry in the browser history.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.GoForward(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle)">
+            <summary>
+            Navigates forward one entry in the browser history.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.Refresh(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle)">
+            <summary>
+            Refreshes the browser page.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.GetVisible(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,System.Int32@)">
+            <summary>
+            Gets a value indicating whether the browser is visible.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="visible">An returned integer value indicating whether the browser is visible.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.SetVisible(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,System.Int32)">
+            <summary>
+            Sets the visibility of the browser.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="visible">An integer value indicating whether the browser should be visible.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.GetCurrentUrl(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,OpenQA.Selenium.IE.SafeStringWrapperHandle@)">
+            <summary>
+            Gets the current URL the browser is browsing.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="currentUrlWrapperHandle">A pointer to a string containing the URL.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.GetTitle(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,OpenQA.Selenium.IE.SafeStringWrapperHandle@)">
+            <summary>
+            Gets the title of the current page.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="titleWrapperHandle">A pointer to a string containing the title.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.GetPageSource(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,OpenQA.Selenium.IE.SafeStringWrapperHandle@)">
+            <summary>
+            Gets the HTML source of the current page.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="pageSourceWrapperHandle">A pointer to a string containing the HTML source.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.GetCookies(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,OpenQA.Selenium.IE.SafeStringWrapperHandle@)">
+            <summary>
+            Gets the cookies set for the current page.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="cookiesWrapperHandle">A pointer to a string containing the cookie strings.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.SwitchToActiveElement(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle@)">
+            <summary>
+            Switches focus to the active element.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="elementHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> class.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.SwitchToWindow(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,System.String)">
+            <summary>
+            Switches focus to the specified window.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="windowName">The identifying string of the window to switch to.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.SwitchToFrame(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,System.String)">
+            <summary>
+            Switches focus to the specified frame.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="frameName">The identifying string of the frame to switch to.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.WaitForLoadToComplete(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle)">
+            <summary>
+            Waits for the page load to complete.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.GetAllWindowHandles(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,OpenQA.Selenium.IE.SafeStringCollectionHandle@)">
+            <summary>
+            Gets all window handles known to this driver.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="windowHandlesCollectionHandle">A pointer to a string collection containing the window handles.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.GetCurrentWindowHandle(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,OpenQA.Selenium.IE.SafeStringWrapperHandle@)">
+            <summary>
+            Gets the identifying handle string of the current window.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="handleWrapperHandle">A pointer to a string containing the window .</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.CaptureScreenshotAsBase64(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,OpenQA.Selenium.IE.SafeStringWrapperHandle@)">
+            <summary>
+            Gets a screenshot of the browser window as a base64 encoded string.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="screenshotWrapperHandle">A pointer to a string containing the screenshot.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.SetImplicitWaitTimeout(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,System.Int32)">
+            <summary>
+            Sets the timeout used for implicitly waiting for an element to appear on the page.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="timeoutInMillis">The amount of time, in milliseconds, before returning that an element was not found.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.ClickElement(OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle)">
+            <summary>
+            Clicks an element.
+            </summary>
+            <param name="elementHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> class.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.GetElementAttribute(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle,System.String,OpenQA.Selenium.IE.SafeStringWrapperHandle@)">
+            <summary>
+            Gets an attribute of the specified element.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="elementHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> class.</param>
+            <param name="attributeName">The name of the attribute.</param>
+            <param name="attributeValueWrapperHandle">A pointer to a string containing the attribute value.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.GetElementValueOfCssProperty(OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle,System.String,OpenQA.Selenium.IE.SafeStringWrapperHandle@)">
+            <summary>
+            Gets a value of a CSS property for the element.
+            </summary>
+            <param name="elementHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> class.</param>
+            <param name="propertyName">The name of the property.</param>
+            <param name="propertyValueWrapperHandle">A pointer to a string containing the property value.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.GetElementText(OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle,OpenQA.Selenium.IE.SafeStringWrapperHandle@)">
+            <summary>
+            Gets a text of the element.
+            </summary>
+            <param name="elementHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> class.</param>
+            <param name="textWrapperHandle">A pointer to a string containing the text.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.GetElementTagName(OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle,OpenQA.Selenium.IE.SafeStringWrapperHandle@)">
+            <summary>
+            Gets the tag name of the element.
+            </summary>
+            <param name="elementHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> class.</param>
+            <param name="tagNameWrapperHandle">A pointer to a string containing the tag name.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.IsElementSelected(OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle,System.Int32@)">
+            <summary>
+            Gets a value indicating whether the element is selected.
+            </summary>
+            <param name="elementHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> class.</param>
+            <param name="selected">A value determining if the element is selected..</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.SetElementSelected(OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle)">
+            <summary>
+            Selects an element.
+            </summary>
+            <param name="elementHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> class.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.ToggleElement(OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle,System.Int32@)">
+            <summary>
+            Toggles an element.
+            </summary>
+            <param name="elementHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> class.</param>
+            <param name="toggled">A value representing the toggled state of the element.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.IsElementEnabled(OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle,System.Int32@)">
+            <summary>
+            Gets a value indicating if the element is enabled.
+            </summary>
+            <param name="elementHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> class.</param>
+            <param name="enabled">A value representing the enabled state of the element.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.IsElementDisplayed(OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle,System.Int32@)">
+            <summary>
+            Gets a value indicating if the element is displayed.
+            </summary>
+            <param name="elementHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> class.</param>
+            <param name="displayed">A value representing the displayed state of the element.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.SendKeysToElement(OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle,System.String)">
+            <summary>
+            Sends keystrokes to an element.
+            </summary>
+            <param name="elementHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> class.</param>
+            <param name="keysToSend">The keystrokes to send to the element.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.ClearElement(OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle)">
+            <summary>
+            Clears an element.
+            </summary>
+            <param name="elementHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> class.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.SubmitElement(OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle)">
+            <summary>
+            Submits an element.
+            </summary>
+            <param name="elementHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> class.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.GetElementDetailsOnceScrolledOnToScreen(OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle,System.IntPtr@,System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Gets the details of an element once scrolled onto the screen.
+            </summary>
+            <param name="elementHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> class.</param>
+            <param name="hwnd">The window handle of the browser.</param>
+            <param name="x">The coordinate of the left side of the element.</param>
+            <param name="y">The coordinate of the top of the element.</param>
+            <param name="width">The width of the element.</param>
+            <param name="height">The height of the element.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.GetElementLocation(OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle,System.Int32@,System.Int32@)">
+            <summary>
+            Gets the location of the element.
+            </summary>
+            <param name="elementHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> class.</param>
+            <param name="x">The coordinate of the left side of the element.</param>
+            <param name="y">The coordinate of the top of the element.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.GetElementSize(OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle,System.Int32@,System.Int32@)">
+            <summary>
+            Gets the size of an element.
+            </summary>
+            <param name="elementHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> class.</param>
+            <param name="width">The width of the element.</param>
+            <param name="height">The height of the element.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.FindElementById(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle,System.String,OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle@)">
+            <summary>
+            Finds the first element on the page meeting the specified criteria.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="elementHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> class.</param>
+            <param name="id">The criteria to use to find the element.</param>
+            <param name="foundElementHandle">A handle to the found element.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.FindElementsById(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle,System.String,OpenQA.Selenium.IE.SafeWebElementCollectionHandle@)">
+            <summary>
+            Finds all elements on the page meeting the specified criteria.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="elementHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> class.</param>
+            <param name="id">The criteria to use to find the elements.</param>
+            <param name="foundElementCollectionHandle">A handle to the collection containing found elements.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.FindElementByClassName(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle,System.String,OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle@)">
+            <summary>
+            Finds the first element on the page meeting the specified criteria.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="elementHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> class.</param>
+            <param name="className">The criteria to use to find the element.</param>
+            <param name="foundElementHandle">A handle to the found element.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.FindElementsByClassName(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle,System.String,OpenQA.Selenium.IE.SafeWebElementCollectionHandle@)">
+            <summary>
+            Finds all elements on the page meeting the specified criteria.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="elementHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> class.</param>
+            <param name="className">The criteria to use to find the elements.</param>
+            <param name="foundElementCollectionHandle">A handle to the collection containing found elements.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.FindElementByLinkText(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle,System.String,OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle@)">
+            <summary>
+            Finds the first element on the page meeting the specified criteria.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="elementHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> class.</param>
+            <param name="linkText">The criteria to use to find the element.</param>
+            <param name="foundElementHandle">A handle to the found element.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.FindElementsByLinkText(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle,System.String,OpenQA.Selenium.IE.SafeWebElementCollectionHandle@)">
+            <summary>
+            Finds all elements on the page meeting the specified criteria.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="elementHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> class.</param>
+            <param name="linkText">The criteria to use to find the elements.</param>
+            <param name="foundElementCollectionHandle">A handle to the collection containing found elements.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.FindElementByPartialLinkText(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle,System.String,OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle@)">
+            <summary>
+            Finds the first element on the page meeting the specified criteria.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="elementHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> class.</param>
+            <param name="partialLinkText">The criteria to use to find the element.</param>
+            <param name="foundElementHandle">A handle to the found element.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.FindElementsByPartialLinkText(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle,System.String,OpenQA.Selenium.IE.SafeWebElementCollectionHandle@)">
+            <summary>
+            Finds all elements on the page meeting the specified criteria.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="elementHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> class.</param>
+            <param name="partialLinkText">The criteria to use to find the elements.</param>
+            <param name="foundElementCollectionHandle">A handle to the collection containing found elements.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.FindElementByName(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle,System.String,OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle@)">
+            <summary>
+            Finds the first element on the page meeting the specified criteria.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="elementHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> class.</param>
+            <param name="name">The criteria to use to find the element.</param>
+            <param name="foundElementHandle">A handle to the found element.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.FindElementsByName(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle,System.String,OpenQA.Selenium.IE.SafeWebElementCollectionHandle@)">
+            <summary>
+            Finds all elements on the page meeting the specified criteria.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="elementHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> class.</param>
+            <param name="name">The criteria to use to find the elements.</param>
+            <param name="foundElementCollectionHandle">A handle to the collection containing found elements.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.FindElementByTagName(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle,System.String,OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle@)">
+            <summary>
+            Finds the first element on the page meeting the specified criteria.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="elementHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> class.</param>
+            <param name="tagName">The criteria to use to find the element.</param>
+            <param name="foundElementHandle">A handle to the found element.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.FindElementsByTagName(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle,System.String,OpenQA.Selenium.IE.SafeWebElementCollectionHandle@)">
+            <summary>
+            Finds all elements on the page meeting the specified criteria.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="elementHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> class.</param>
+            <param name="tagName">The criteria to use to find the elements.</param>
+            <param name="foundElementCollectionHandle">A handle to the collection containing found elements.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.FindElementByXPath(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle,System.String,OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle@)">
+            <summary>
+            Finds the first element on the page meeting the specified criteria.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="elementHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> class.</param>
+            <param name="xpath">The criteria to use to find the element.</param>
+            <param name="foundElementHandle">A handle to the found element.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.FindElementsByXPath(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle,System.String,OpenQA.Selenium.IE.SafeWebElementCollectionHandle@)">
+            <summary>
+            Finds all elements on the page meeting the specified criteria.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="elementHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> class.</param>
+            <param name="xpath">The criteria to use to find the elements.</param>
+            <param name="foundElementCollectionHandle">A handle to the collection containing found elements.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.NewScriptArgs(OpenQA.Selenium.IE.SafeScriptArgsHandle@,System.Int32)">
+            <summary>
+            Creates a new set of script arguments.
+            </summary>
+            <param name="scriptArgsHandle">A handle to the instance of the script arguments.</param>
+            <param name="maxLength">The maximum number of arguments to allocate.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.AddStringScriptArg(OpenQA.Selenium.IE.SafeScriptArgsHandle,System.String)">
+            <summary>
+            Adds a string argument to the set of script arguments.
+            </summary>
+            <param name="scriptArgsHandle">A handle to the instance of the script arguments.</param>
+            <param name="argument">The argument to add.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.AddBooleanScriptArg(OpenQA.Selenium.IE.SafeScriptArgsHandle,System.Int32)">
+            <summary>
+            Adds a boolean argument to the set of script arguments.
+            </summary>
+            <param name="scriptArgsHandle">A handle to the instance of the script arguments.</param>
+            <param name="argument">The argument to add.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.AddNumberScriptArg(OpenQA.Selenium.IE.SafeScriptArgsHandle,System.Int64)">
+            <summary>
+            Adds a number argument to the set of script arguments.
+            </summary>
+            <param name="scriptArgsHandle">A handle to the instance of the script arguments.</param>
+            <param name="argument">The argument to add.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.AddDoubleScriptArg(OpenQA.Selenium.IE.SafeScriptArgsHandle,System.Double)">
+            <summary>
+            Adds a double argument to the set of script arguments.
+            </summary>
+            <param name="scriptArgsHandle">A handle to the instance of the script arguments.</param>
+            <param name="argument">The argument to add.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.AddElementScriptArg(OpenQA.Selenium.IE.SafeScriptArgsHandle,OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle)">
+            <summary>
+            Adds an element argument to the set of script arguments.
+            </summary>
+            <param name="scriptArgsHandle">A handle to the instance of the script arguments.</param>
+            <param name="argument">The argument to add.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.ExecuteScript(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,System.String,OpenQA.Selenium.IE.SafeScriptArgsHandle,OpenQA.Selenium.IE.SafeScriptResultHandle@)">
+            <summary>
+            Executes arbitrary JavaScript on the page.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="script">The script to run.</param>
+            <param name="scriptArgsHandle">A handle to the instance of the script arguments.</param>
+            <param name="scriptResultHandle">A handle to the result of the script.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.GetScriptResultType(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,OpenQA.Selenium.IE.SafeScriptResultHandle,System.Int32@)">
+            <summary>
+            Gets the type of object returned from the script.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="scriptResultHandle">A handle to the result of the script.</param>
+            <param name="resultType">A value representing the return type.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.GetStringScriptResult(OpenQA.Selenium.IE.SafeScriptResultHandle,OpenQA.Selenium.IE.SafeStringWrapperHandle@)">
+            <summary>
+            Retrieves the value from the script result.
+            </summary>
+            <param name="scriptResultHandle">A handle to the result of the script.</param>
+            <param name="scriptResultValueWrapperHandle">A value representing the value of the returned object from the script.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.GetNumberScriptResult(OpenQA.Selenium.IE.SafeScriptResultHandle,System.Int64@)">
+            <summary>
+            Retrieves the value from the script result.
+            </summary>
+            <param name="scriptResultHandle">A handle to the result of the script.</param>
+            <param name="scriptResultValue">A value representing the value of the returned object from the script.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.GetDoubleScriptResult(OpenQA.Selenium.IE.SafeScriptResultHandle,System.Double@)">
+            <summary>
+            Retrieves the value from the script result.
+            </summary>
+            <param name="scriptResultHandle">A handle to the result of the script.</param>
+            <param name="scriptResultValue">A value representing the value of the returned object from the script.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.GetBooleanScriptResult(OpenQA.Selenium.IE.SafeScriptResultHandle,System.Int32@)">
+            <summary>
+            Retrieves the value from the script result.
+            </summary>
+            <param name="scriptResultHandle">A handle to the result of the script.</param>
+            <param name="scriptResultValue">A value representing the value of the returned object from the script.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.GetElementScriptResult(OpenQA.Selenium.IE.SafeScriptResultHandle,OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle@)">
+            <summary>
+            Retrieves the value from the script result.
+            </summary>
+            <param name="scriptResultHandle">A handle to the result of the script.</param>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="scriptResultValue">A value representing the value of the returned object from the script.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.GetArrayLengthScriptResult(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,OpenQA.Selenium.IE.SafeScriptResultHandle,System.Int32@)">
+            <summary>
+            Gets the length of an array returned by the script.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="scriptResultHandle">A handle to the result of the script.</param>
+            <param name="arrayLength">The number of elements in the returned array.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.GetArrayItemFromScriptResult(OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle,OpenQA.Selenium.IE.SafeScriptResultHandle,System.Int32,OpenQA.Selenium.IE.SafeScriptResultHandle@)">
+            <summary>
+            Gets the length of an array returned by the script.
+            </summary>
+            <param name="driverHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/> class.</param>
+            <param name="scriptResultHandle">A handle to the result of the script.</param>
+            <param name="itemIndex">The index of the item in the returned array.</param>
+            <param name="item">A handle to the returned item.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.GetElementCollectionLength(OpenQA.Selenium.IE.SafeWebElementCollectionHandle,System.Int32@)">
+            <summary>
+            Gets the length of an element collection.
+            </summary>
+            <param name="elementCollectionHandle">A handle to the web element collection.</param>
+            <param name="count">The number of items in the collection.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.GetElementAtIndex(OpenQA.Selenium.IE.SafeWebElementCollectionHandle,System.Int32,OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle@)">
+            <summary>
+            Gets an item from an element collection.
+            </summary>
+            <param name="elementCollectionHandle">A handle to the web element collection.</param>
+            <param name="index">The index of the item the collection.</param>
+            <param name="elementHandle">A handle to the instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerWebElement"/> class.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.GetStringCollectionLength(OpenQA.Selenium.IE.SafeStringCollectionHandle,System.Int32@)">
+            <summary>
+            Gets the length of a string collection.
+            </summary>
+            <param name="stringCollectionHandle">A handle to the string collection.</param>
+            <param name="count">The number of items in the collection.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.GetStringAtIndex(OpenQA.Selenium.IE.SafeStringCollectionHandle,System.Int32,OpenQA.Selenium.IE.SafeStringWrapperHandle@)">
+            <summary>
+            Gets an item from a string collection.
+            </summary>
+            <param name="stringCollectionHandle">A handle to the string collection.</param>
+            <param name="index">The index of the item the collection.</param>
+            <param name="textWrapperHandle">A handle to the retrieved string.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.StringLength(OpenQA.Selenium.IE.SafeStringWrapperHandle,System.Int32@)">
+            <summary>
+            Gets the length of a string.
+            </summary>
+            <param name="stringWrapperHandle">A pointer to the string to get the length of.</param>
+            <param name="length">The length of the string.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.CopyString(OpenQA.Selenium.IE.SafeStringWrapperHandle,System.Int32,System.Text.StringBuilder)">
+            <summary>
+            Copies a string.
+            </summary>
+            <param name="stringWrapperHandle">A pointer to the string to copy.</param>
+            <param name="length">The length of the string to copy.</param>
+            <param name="copiedString">The copied string.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.MouseDownAt(System.IntPtr,System.Int32,System.Int32)">
+            <summary>
+            Simulates a mouse down event.
+            </summary>
+            <param name="hwnd">The window on which to perform the operation.</param>
+            <param name="windowX">The X coordinate at which to simulate the mouse operation.</param>
+            <param name="windowY">The Y coordinate at which to simulate the mouse operation.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.MouseUpAt(System.IntPtr,System.Int32,System.Int32)">
+            <summary>
+            Simulates a mouse up event.
+            </summary>
+            <param name="hwnd">The window on which to perform the operation.</param>
+            <param name="windowX">The X coordinate at which to simulate the mouse operation.</param>
+            <param name="windowY">The Y coordinate at which to simulate the mouse operation.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.NativeDriverLibrary.MouseMoveTo(System.IntPtr,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Simulates a mouse move event.
+            </summary>
+            <param name="hwnd">The window on which to perform the operation.</param>
+            <param name="duration">Length of time to perform the operation.</param>
+            <param name="fromX">The X coordinate at which to start the mouse operation.</param>
+            <param name="fromY">The Y coordinate at which to start the mouse operation.</param>
+            <param name="toX">The X coordinate at which to end the mouse operation.</param>
+            <param name="toY">The Y coordinate at which to end the mouse operation.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.WebDriverResult"/> value indicating success or failure.</returns>
+        </member>
+        <member name="P:OpenQA.Selenium.IE.NativeDriverLibrary.Instance">
+            <summary>
+            Gets the singleton instance of the <see cref="T:OpenQA.Selenium.IE.NativeDriverLibrary"/> class.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.IE.NativeMethods">
+            <summary>
+            Provides entry points into needed unmanaged APIs.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.IE.ResultHandler">
+            <summary>
+            Internal class for returning Results
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.ResultHandler.VerifyResultCode(OpenQA.Selenium.WebDriverResult,System.String)">
+            <summary>
+            Verifies the results
+            </summary>
+            <param name="resultCode">Code returned from the driver</param>
+            <param name="messageReturned">Message to be returned</param>
+        </member>
+        <member name="T:OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle">
+            <summary>
+            Handler for the driver
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle.#ctor">
+            <summary>
+            Initializes a new instance of the SafeInternetExplorerDriverHandle class
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.SafeInternetExplorerDriverHandle.ReleaseHandle">
+            <summary>
+            Releases the instance of the Wrapper
+            </summary>
+            <returns>True if released</returns>
+        </member>
+        <member name="T:OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle">
+            <summary>
+            Handler for script for Internet Explorer Elements
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle.#ctor">
+            <summary>
+            Initializes a new instance of the SafeInternetExplorerWebElementHandle class
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.SafeInternetExplorerWebElementHandle.ReleaseHandle">
+            <summary>
+            Releases the instance of the handle
+            </summary>
+            <returns>True if released</returns>
+        </member>
+        <member name="T:OpenQA.Selenium.IE.SafeScriptArgsHandle">
+            <summary>
+            Handler for script arguments
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.SafeScriptArgsHandle.#ctor">
+            <summary>
+            Initializes a new instance of the SafeScriptArgsHandle class
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.SafeScriptArgsHandle.ReleaseHandle">
+            <summary>
+            Releases the instance of the handle
+            </summary>
+            <returns>True if released</returns>
+        </member>
+        <member name="T:OpenQA.Selenium.IE.SafeScriptResultHandle">
+            <summary>
+            Handler for script results
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.SafeScriptResultHandle.#ctor">
+            <summary>
+            Initializes a new instance of the SafeScriptResultHandle class
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.SafeScriptResultHandle.ReleaseHandle">
+            <summary>
+            Releases the instance of the handle
+            </summary>
+            <returns>True if released</returns>
+        </member>
+        <member name="T:OpenQA.Selenium.IE.SafeStringCollectionHandle">
+            <summary>
+            Wrapper for Native strings in a collection from the driver
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.SafeStringCollectionHandle.#ctor">
+            <summary>
+            Initializes a new instance of the SafeStringCollectionHandle class
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.SafeStringCollectionHandle.ReleaseHandle">
+            <summary>
+            Releases the instance of the Wrapper
+            </summary>
+            <returns>True if released</returns>
+        </member>
+        <member name="T:OpenQA.Selenium.IE.SafeStringWrapperHandle">
+            <summary>
+            Wrapper for Native strings from the driver
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.SafeStringWrapperHandle.#ctor">
+            <summary>
+            Initializes a new instance of the SafeStringWrapperHandle class
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.SafeStringWrapperHandle.ReleaseHandle">
+            <summary>
+            Releases the instance of the Wrapper
+            </summary>
+            <returns>True if released</returns>
+        </member>
+        <member name="T:OpenQA.Selenium.IE.SafeWebElementCollectionHandle">
+            <summary>
+            Handler for Web Elements in a collection
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.SafeWebElementCollectionHandle.#ctor">
+            <summary>
+            Initializes a new instance of the SafeWebElementCollectionHandle class
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.SafeWebElementCollectionHandle.ReleaseHandle">
+            <summary>
+            Releases the handle and frees up elements
+            </summary>
+            <returns>True if the handle was released</returns>
+        </member>
+        <member name="P:OpenQA.Selenium.IE.SafeWebElementCollectionHandle.FreeElementsOnDispose">
+            <summary>
+            Gets or sets a value indicating whether it should dispose free elements
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.IE.StringCollection">
+            <summary>
+            Create and manage collections of strings
+            </summary>
+            TODO(andre.nogueira): StringCollection, ElementCollection and StringWrapperHandle should be consistent among them
+        </member>
+        <member name="M:OpenQA.Selenium.IE.StringCollection.#ctor(OpenQA.Selenium.IE.SafeStringCollectionHandle)">
+            <summary>
+            Initializes a new instance of the StringCollection class.
+            </summary>
+            <param name="elementCollectionHandle">element collection handler</param>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.StringCollection.ToList">
+            <summary>
+            Converts the Collection to a list
+            </summary>
+            <returns>A list of strings </returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.StringCollection.Dispose">
+            <summary>
+            Dispose of the object
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.IE.StringWrapper">
+            <summary>
+            Wrapper class for Strings
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.StringWrapper.#ctor(OpenQA.Selenium.IE.SafeStringWrapperHandle)">
+            <summary>
+            Initializes a new instance of the StringWrapper class
+            </summary>
+            <param name="stringHandle">Instance of the <see cref="T:OpenQA.Selenium.IE.SafeStringWrapperHandle"/></param>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.StringWrapper.Dispose">
+            <summary>
+            Disposes of the objects
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.IE.StringWrapper.Value">
+            <summary>
+            Gets the value the value of the string from the native driver
+            </summary>
+        </member>
+    </members>
+</doc>

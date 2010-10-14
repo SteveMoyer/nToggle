@@ -1,28 +1,25 @@
 ﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Configuration;
+
 using nToggle;
+using NUnit.Framework;
 namespace nToggleTest
 {
-   [TestClass]
+   [TestFixture]
     public class AppSettingsToggleRepositoryTest
     {
-        [TestMethod]
+        [Test]
         public void ShouldReturnFalseWhenFalseInConfig()
         {
             var repo = new AppSettingsFeatureStatusRepository();
             Assert.AreEqual(false, repo.GetToggleStatus("TestFeatureOff"));
         }
-        [TestMethod]
+        [Test]
         public void ShouldReturnTrueWhenTrueInConfig()
         {
             var repo = new AppSettingsFeatureStatusRepository();
             Assert.AreEqual(true, repo.GetToggleStatus("TestFeatureOn"));
         }
-        [TestMethod]
+        [Test]
         public void ShouldReturnFalseIfNotInConfig()
         {
             var repo = new AppSettingsFeatureStatusRepository();
