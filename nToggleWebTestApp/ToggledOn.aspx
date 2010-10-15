@@ -9,10 +9,10 @@
 </head>
 <body>
    <nToggle:FeatureToggle ID="FeatureToggle1" EnabledBy="TestFeatureOn" runat="server" >
-    Turned On
+    <span id="enabledby">Turned On</span>
     </nToggle:FeatureToggle>
     <nToggle:FeatureToggle ID="FeatureToggle2" RemovedBy="TestFeatureOn" runat="server" >
-    Turned On But Reversed
+    <span id="removedby">Turned On But Reversed</span>
     </nToggle:FeatureToggle>
 </body>
 </html>

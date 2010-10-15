@@ -6,7 +6,7 @@ namespace nToggle
 {
     [DefaultProperty("Text")]
     [ToolboxData("<{0}:FeatureToggle runat=server></{0}:FeatureToggle>")]
-    public class FeatureToggle : Panel
+    public class FeatureToggle : PlaceHolder
     {
         private IFeatureStatusFactory _FeatureFactory;
         string _removedBy = "";
