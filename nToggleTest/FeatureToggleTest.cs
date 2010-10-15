@@ -76,5 +76,54 @@ namespace nToggleTest
             _FeatureToggle.ApplyToggle();
         }
 
+        [Test]
+        public void RunActionWhenEnabledShouldRunActionWhenEnabled()
+        {
+            _FeatureToggle.RemovedBy = "fake";
+            _MockFeatureStatusFactory.Setup(fact => fact.GetFeatureStatus("fake", true)).Returns(new FeatureStatus(true));
+            bool actionWasRun = false;
+            _FeatureToggle.ApplyToggle();
+            _FeatureToggle.RunActionWhenEnabled(() => { actionWasRun = true; });
+            Assert.IsTrue(actionWasRun);
+            
+        }
+
+
+        [Test]
+        public void RunActionWhenEnabledShouldNotRunActionWhenRemoved()
+        {
+            _FeatureToggle.RemovedBy = "fake";
+            _MockFeatureStatusFactory.Setup(fact => fact.GetFeatureStatus("fake", true)).Returns(new FeatureStatus(false));
+            bool actionWasRun = false;
+            _FeatureToggle.ApplyToggle();
+            _FeatureToggle.RunActionWhenEnabled(() => { actionWasRun = true; });
+            Assert.IsFalse(actionWasRun);
+
+        }
+        [Test]
+        public void RunActionWhenDisabledShouldRunActionWhenDisabled()
+        {
+            _FeatureToggle.RemovedBy = "fake";
+            _MockFeatureStatusFactory.Setup(fact => fact.GetFeatureStatus("fake", true)).Returns(new FeatureStatus(false));
+            bool actionWasRun = false;
+            _FeatureToggle.ApplyToggle();
+            _FeatureToggle.RunActionWhenDisabled(() => { actionWasRun = true; });
+            Assert.IsTrue(actionWasRun);
+
+        }
+
+        [Test]
+        public void RunActionWhenDisabledShouldNotRunActionWhenEnabled()
+        {
+            _FeatureToggle.RemovedBy = "fake";
+            _MockFeatureStatusFactory.Setup(fact => fact.GetFeatureStatus("fake", true)).Returns(new FeatureStatus(true));
+            bool actionWasRun = false;
+            _FeatureToggle.ApplyToggle();
+            _FeatureToggle.RunActionWhenDisabled(() => { actionWasRun = true; });
+            Assert.IsFalse(actionWasRun);
+
+        }
+        
+
     }
 }
