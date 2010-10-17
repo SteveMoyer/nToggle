@@ -19,7 +19,7 @@ namespace nToggleWebTestApp {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::nToggle.FeatureToggle FeatureToggle1;
+        protected global::nToggle.WebFeatureToggle FeatureToggle1;
         
         /// <summary>
         /// FeatureToggle2 control.
@@ -28,6 +28,6 @@ namespace nToggleWebTestApp {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::nToggle.FeatureToggle FeatureToggle2;
+        protected global::nToggle.WebFeatureToggle FeatureToggle2;
     }
 }

@@ -56,7 +56,7 @@
   <ItemGroup>
     <Compile Include="FeatureStatusTest.cs" />
     <Compile Include="FeatureToggleFactoryTest.cs" />
-    <Compile Include="FeatureToggleTest.cs" />
+    <Compile Include="WebFeatureToggleTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AppSettingsToggleRepositoryTest.cs" />
   </ItemGroup>
