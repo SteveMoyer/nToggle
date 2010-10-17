@@ -54,7 +54,7 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FeatureStatusTest.cs" />
+    <Compile Include="FeatureToggleTest.cs" />
     <Compile Include="FeatureToggleFactoryTest.cs" />
     <Compile Include="WebFeatureToggleTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -43,12 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppSettingsFeatureStatusRepository.cs" />
-    <Compile Include="FeatureStatus.cs" />
+    <Compile Include="AppSettingsFeatureToggleRepository.cs" />
+    <Compile Include="FeatureToggle.cs" />
     <Compile Include="WebFeatureToggle.cs" />
-    <Compile Include="FeatureStatusFactory.cs" />
-    <Compile Include="IFeatureStatus.cs" />
-    <Compile Include="IFeatureStatusFactory.cs" />
+    <Compile Include="FeatureToggleFactory.cs" />
+    <Compile Include="IFeatureToggle.cs" />
+    <Compile Include="IFeatureToggleFactory.cs" />
     <Compile Include="IFeatureToggleRepository.cs" />
     <Compile Include="InvalidMarkupException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

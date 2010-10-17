@@ -2,7 +2,7 @@
 
 namespace nToggle
 {
-    public interface IFeatureStatusRepository
+    public interface IFeatureToggleRepository
     {
          bool GetToggleStatus(string toggleName);
       

@@ -8,17 +8,17 @@ namespace nToggle
     [ToolboxData("<{0}:FeatureToggle runat=server></{0}:FeatureToggle>")]
     public class WebFeatureToggle : PlaceHolder
     {
-        private IFeatureStatusFactory _FeatureFactory;
-        private IFeatureStatus _FeatureStatus;
+        private IFeatureToggleFactory _FeatureFactory;
+        private IFeatureToggle _FeatureStatus;
         string _removedBy = "";
         string _enabledBy = "";
-        public WebFeatureToggle(IFeatureStatusFactory featureFactory)
+        public WebFeatureToggle(IFeatureToggleFactory featureFactory)
         {
             _FeatureFactory = featureFactory;
         }
         public WebFeatureToggle()
         {
-            _FeatureFactory = new FeatureStatusFactory();
+            _FeatureFactory = new FeatureToggleFactory();
         }
         [Bindable(true)]
         

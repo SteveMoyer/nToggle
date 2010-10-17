@@ -9,13 +9,13 @@ namespace nToggleTest
     public class FeatureToggleFactoryTest
     {
 
-        private FeatureStatusFactory _Factory;
-        private Mock<IFeatureStatusRepository> _repo ;
+        private FeatureToggleFactory _Factory;
+        private Mock<IFeatureToggleRepository> _repo ;
         [SetUp]
         public void Setup()
         {
-            _repo = new Mock<IFeatureStatusRepository>();
-            _Factory = new FeatureStatusFactory(_repo.Object);
+            _repo = new Mock<IFeatureToggleRepository>();
+            _Factory = new FeatureToggleFactory(_repo.Object);
 
         }
 

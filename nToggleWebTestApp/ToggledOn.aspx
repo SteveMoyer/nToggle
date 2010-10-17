@@ -8,11 +8,11 @@
     <title></title>
 </head>
 <body>
-   <nToggle:FeatureToggle ID="FeatureToggle1" EnabledBy="TestFeatureOn" runat="server" >
+   <nToggle:WebFeatureToggle ID="FeatureToggle1" EnabledBy="TestFeatureOn" runat="server" >
     <span id="enabledby">Turned On</span>
-    </nToggle:FeatureToggle>
-    <nToggle:FeatureToggle ID="FeatureToggle2" RemovedBy="TestFeatureOn" runat="server" >
+    </nToggle:WebFeatureToggle>
+    <nToggle:WebFeatureToggle ID="FeatureToggle2" RemovedBy="TestFeatureOn" runat="server" >
     <span id="removedby">Turned On But Reversed</span>
-    </nToggle:FeatureToggle>
+    </nToggle:WebFeatureToggle>
 </body>
 </html>

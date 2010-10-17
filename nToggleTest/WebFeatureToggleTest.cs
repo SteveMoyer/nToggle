@@ -9,16 +9,16 @@ namespace nToggleTest
     [TestFixture]
     public class WebFeatureToggleTest
     {
-        private Mock<IFeatureStatus> _MockFeatureStatus;
-        private Mock<IFeatureStatusFactory> _MockFeatureStatusFactory;
+        private Mock<IFeatureToggle> _MockFeatureStatus;
+        private Mock<IFeatureToggleFactory> _MockFeatureStatusFactory;
         private WebFeatureToggle _FeatureToggle;
 
         [SetUp]
         public void Setup()
         {
-            _MockFeatureStatusFactory = new Mock<IFeatureStatusFactory>();
+            _MockFeatureStatusFactory = new Mock<IFeatureToggleFactory>();
             _FeatureToggle = new WebFeatureToggle(_MockFeatureStatusFactory.Object);
-            _MockFeatureStatus = new Mock<IFeatureStatus>();
+            _MockFeatureStatus = new Mock<IFeatureToggle>();
         }
 
         [Test]
@@ -26,7 +26,7 @@ namespace nToggleTest
         {
             _FeatureToggle.Controls.Add(new Literal());
             _FeatureToggle.EnabledBy = "fake";
-            _MockFeatureStatusFactory.Setup(fact => fact.GetFeatureStatus("fake", false)).Returns(new FeatureStatus(true));
+            _MockFeatureStatusFactory.Setup(fact => fact.GetFeatureStatus("fake", false)).Returns(new FeatureToggle(true));
             _FeatureToggle.ApplyToggle();
 
             Assert.AreEqual(1, _FeatureToggle.Controls.Count);
@@ -37,7 +37,7 @@ namespace nToggleTest
         {
             _FeatureToggle.Controls.Add(new Literal());
             _FeatureToggle.EnabledBy = "fake";
-            _MockFeatureStatusFactory.Setup(fact => fact.GetFeatureStatus("fake", false)).Returns(new FeatureStatus(false));
+            _MockFeatureStatusFactory.Setup(fact => fact.GetFeatureStatus("fake", false)).Returns(new FeatureToggle(false));
             _FeatureToggle.ApplyToggle();
 
             Assert.AreEqual(0, _FeatureToggle.Controls.Count);
@@ -48,7 +48,7 @@ namespace nToggleTest
         {
             _FeatureToggle.Controls.Add(new Literal());
             _FeatureToggle.RemovedBy = "fake";
-            _MockFeatureStatusFactory.Setup(fact => fact.GetFeatureStatus("fake", true)).Returns(new FeatureStatus(false));
+            _MockFeatureStatusFactory.Setup(fact => fact.GetFeatureStatus("fake", true)).Returns(new FeatureToggle(false));
             _FeatureToggle.ApplyToggle();
 
             Assert.AreEqual(0, _FeatureToggle.Controls.Count);
@@ -60,7 +60,7 @@ namespace nToggleTest
         {
             _FeatureToggle.Controls.Add(new Literal());
             _FeatureToggle.RemovedBy = "fake";
-            _MockFeatureStatusFactory.Setup(fact => fact.GetFeatureStatus("fake", true)).Returns(new FeatureStatus(true));
+            _MockFeatureStatusFactory.Setup(fact => fact.GetFeatureStatus("fake", true)).Returns(new FeatureToggle(true));
             _FeatureToggle.ApplyToggle();
 
             Assert.AreEqual(1, _FeatureToggle.Controls.Count);

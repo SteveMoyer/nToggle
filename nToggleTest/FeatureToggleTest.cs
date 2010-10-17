@@ -5,12 +5,12 @@ using nToggle;
 namespace nToggleTest
 {
     [TestFixture]
-    public class FeatureStatusTest
+    public class FeatureToggleTest
     {
         [Test]
         public void RunActionIfOnShouldRunActionWhenOn()
         {
-            FeatureStatus featureStatus = new FeatureStatus(true);
+            FeatureToggle featureStatus = new FeatureToggle(true);
 
             bool actionWasRun = false;
             featureStatus.RunActionIfOn(() => { actionWasRun = true; });
@@ -20,7 +20,7 @@ namespace nToggleTest
         [Test]
         public void RunActionIfOnShouldNotRunActionWhenOff()
         {
-            FeatureStatus featureStatus = new FeatureStatus(false);
+            FeatureToggle featureStatus = new FeatureToggle(false);
 
             bool actionWasRun = false;
             featureStatus.RunActionIfOn(() => { actionWasRun = true; });
@@ -30,7 +30,7 @@ namespace nToggleTest
         [Test]
         public void RunActionIfOffShouldRunActionWhenOff()
         {
-            FeatureStatus featureStatus = new FeatureStatus(false);
+            FeatureToggle featureStatus = new FeatureToggle(false);
 
             bool actionWasRun = false;
             featureStatus.RunActionIfOff(() => { actionWasRun = true; });
@@ -40,7 +40,7 @@ namespace nToggleTest
         [Test]
         public void RunActionIfOffShouldNotRunActionWhenOn()
         {
-            FeatureStatus featureStatus = new FeatureStatus(true);
+            FeatureToggle featureStatus = new FeatureToggle(true);
 
             bool actionWasRun = false;
             featureStatus.RunActionIfOff(() => { actionWasRun = true; });

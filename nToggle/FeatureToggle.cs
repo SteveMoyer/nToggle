@@ -2,7 +2,7 @@
 
 namespace nToggle
 {
-    public class FeatureStatus : IFeatureStatus
+    public class FeatureToggle : IFeatureToggle
     {
         public void RunActionIfOff(Action offAction)
         {
@@ -15,7 +15,7 @@ namespace nToggle
             if (IsOn)
                 onAction();
         }
-        public FeatureStatus(bool isOn)
+        public FeatureToggle(bool isOn)
         {
             _IsOn = isOn;
         }
