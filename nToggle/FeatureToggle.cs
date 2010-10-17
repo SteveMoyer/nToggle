@@ -9,7 +9,7 @@ namespace nToggle
     public class FeatureToggle : PlaceHolder
     {
         private IFeatureStatusFactory _FeatureFactory;
-        private FeatureStatus _FeatureStatus;
+        private IFeatureStatus _FeatureStatus;
         string _removedBy = "";
         string _enabledBy = "";
         public FeatureToggle(IFeatureStatusFactory featureFactory)
@@ -55,33 +55,28 @@ namespace nToggle
 
         public void RunActionWhenDisabled(Action disabledAction)
         {
-            if (_FeatureStatus.IsOn)
-                return;
+            _FeatureStatus.RunActionIfOff(disabledAction);
             
-            disabledAction();
             
         }
         public void RunActionWhenEnabled(Action enabledAction)
         {
-            if (_FeatureStatus.IsOn)
-            {
-                enabledAction();
-            }
+            _FeatureStatus.RunActionIfOn(enabledAction);
+            
         }
         private void ValidateProperties()
         {
             if (!String.IsNullOrWhiteSpace(RemovedBy) && !string.IsNullOrWhiteSpace(EnabledBy))
-                throw new InvalidMarkupException("You must use RemovedBy or EnabledBy but not both");
+                throw new InvalidMarkupException("You must set RemovedBy or EnabledBy but not both");
 
             if (string.IsNullOrWhiteSpace(RemovedBy) && string.IsNullOrWhiteSpace(EnabledBy))
-                throw new InvalidMarkupException("You must use RemovedBy or EnabledBy");
+                throw new InvalidMarkupException("You must set RemovedBy or EnabledBy");
         }
         public void ApplyToggle()
         {
             ValidateProperties();
-            
-            string featureName = string.IsNullOrWhiteSpace(EnabledBy) ? RemovedBy : EnabledBy;
             Boolean reversed = string.IsNullOrWhiteSpace(EnabledBy);
+            string featureName = reversed ? RemovedBy : EnabledBy;
 
             _FeatureStatus = _FeatureFactory.GetFeatureStatus(featureName, reversed);
             if (!_FeatureStatus.IsOn)

@@ -19,10 +19,10 @@ namespace nToggle
         {
             
         }
-        protected InvalidMarkupException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context)
+        protected InvalidMarkupException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
-            
+
         }
 
     }

@@ -16,12 +16,12 @@ namespace nToggle
        }
 
 
-       public FeatureStatus GetFeatureStatus(string featureName, bool reversed)
+       public IFeatureStatus GetFeatureStatus(string featureName, bool reversed)
        {
            var toggleRepositoryGetToggleStatus = _ToggleRepository.GetToggleStatus(featureName);
            return new FeatureStatus(reversed ? !toggleRepositoryGetToggleStatus : toggleRepositoryGetToggleStatus);
        }
-       public FeatureStatus GetFeatureStatus(string FeatureName)
+       public IFeatureStatus GetFeatureStatus(string FeatureName)
        {
            return new FeatureStatus(_ToggleRepository.GetToggleStatus(FeatureName));
        }

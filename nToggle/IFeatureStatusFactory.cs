@@ -4,7 +4,7 @@ namespace nToggle
 {
    public interface IFeatureStatusFactory
     {
-       FeatureStatus GetFeatureStatus(string featureName, bool reversed);
-       FeatureStatus GetFeatureStatus(string featureName);
+       IFeatureStatus GetFeatureStatus(string featureName, bool reversed);
+       IFeatureStatus GetFeatureStatus(string featureName);
     }
 }

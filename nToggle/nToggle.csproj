@@ -47,6 +47,7 @@
     <Compile Include="FeatureStatus.cs" />
     <Compile Include="FeatureToggle.cs" />
     <Compile Include="FeatureStatusFactory.cs" />
+    <Compile Include="IFeatureStatus.cs" />
     <Compile Include="IFeatureStatusFactory.cs" />
     <Compile Include="IFeatureToggleRepository.cs" />
     <Compile Include="InvalidMarkupException.cs" />

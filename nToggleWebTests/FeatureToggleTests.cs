@@ -6,7 +6,7 @@ using OpenQA.Selenium.Firefox;
 namespace nToggleWebTests
 {
     [TestFixture]
-    public class FeatureToggleTests
+    public class FeatureToggleWebTest
     {
         private const string BaseAddress = "http://localhost:1194/";
         IWebDriver driver;
@@ -35,7 +35,7 @@ namespace nToggleWebTests
                 driver.FindElement(By.Id("removedby"));
                 Assert.Fail("removed control was not removed");
             }
-            catch (NoSuchElementException ex)
+            catch (NoSuchElementException)
             {
             }
         }
@@ -52,7 +52,7 @@ namespace nToggleWebTests
                 driver.FindElement(By.Id("enabledby"));
                 Assert.Fail("removed control was not removed");
             }
-            catch (NoSuchElementException ex)
+            catch (NoSuchElementException)
             {
             }
 
