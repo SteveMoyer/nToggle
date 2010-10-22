@@ -9,7 +9,7 @@ namespace nToggle
     public class WebFeatureToggle : PlaceHolder
     {
         private IFeatureToggleFactory _FeatureFactory;
-        private IFeatureToggle _FeatureStatus;
+        private IFeatureToggle _FeatureToggle;
         string _removedBy = "";
         string _enabledBy = "";
         public WebFeatureToggle(IFeatureToggleFactory featureFactory)
@@ -55,13 +55,13 @@ namespace nToggle
 
         public void RunActionWhenDisabled(Action disabledAction)
         {
-            _FeatureStatus.RunActionIfOff(disabledAction);
+            _FeatureToggle.RunActionIfOff(disabledAction);
             
             
         }
         public void RunActionWhenEnabled(Action enabledAction)
         {
-            _FeatureStatus.RunActionIfOn(enabledAction);
+            _FeatureToggle.RunActionIfOn(enabledAction);
             
         }
         private void ValidateProperties()
@@ -78,8 +78,8 @@ namespace nToggle
             Boolean reversed = string.IsNullOrWhiteSpace(EnabledBy);
             string featureName = reversed ? RemovedBy : EnabledBy;
 
-            _FeatureStatus = _FeatureFactory.GetFeatureStatus(featureName, reversed);
-            if (!_FeatureStatus.IsOn)
+            _FeatureToggle = _FeatureFactory.GetFeatureToggle(featureName, reversed);
+            if (!_FeatureToggle.IsOn)
             {
                 Controls.Clear();
             }

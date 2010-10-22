@@ -24,26 +24,26 @@ namespace nToggleTest
         {
 
             _repo.Setup<bool>(repos => repos.GetToggleStatus("fake")).Returns(true);
-            Assert.AreEqual(true, _Factory.GetFeatureStatus("fake").IsOn);
+            Assert.AreEqual(true, _Factory.GetFeatureToggle("fake").IsOn);
         }
         [Test]
         public void ShouldReturnNotToggledOnWhenOff()
         {
             _repo.Setup<bool>(repos => repos.GetToggleStatus("fake")).Returns(false);
-            Assert.AreEqual(false, _Factory.GetFeatureStatus("fake").IsOn);
+            Assert.AreEqual(false, _Factory.GetFeatureToggle("fake").IsOn);
         }
         [Test]
         public void ShouldReturnToggledOnWhenOffAndReversed()
         {
             _repo.Setup<bool>(repos => repos.GetToggleStatus("fake")).Returns(false);
-            Assert.AreEqual(true, _Factory.GetFeatureStatus("fake", true).IsOn);
+            Assert.AreEqual(true, _Factory.GetFeatureToggle("fake", true).IsOn);
         }
         [Test]
         public void ShouldReturnNotToggledOnWhenOnAndReversed()
         {
             _repo.Setup<bool>(repos => repos.GetToggleStatus("fake")).Returns(true);
 
-            Assert.AreEqual(false, _Factory.GetFeatureStatus("fake", true).IsOn);
+            Assert.AreEqual(false, _Factory.GetFeatureToggle("fake", true).IsOn);
         }
     }
 }
