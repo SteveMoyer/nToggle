@@ -1,10 +1,7 @@
-﻿using System;
-
-namespace nToggle
+﻿namespace nToggle
 {
     public interface IFeatureToggleRepository
     {
-         bool GetToggleStatus(string toggleName);
-      
+        bool GetToggleStatus(string toggleName);
     }
 }

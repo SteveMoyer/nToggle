@@ -1,49 +1,53 @@
-﻿using System;
-
+﻿using Moq;
 using nToggle;
-using Moq;
 using NUnit.Framework;
+
 namespace nToggleTest
 {
     [TestFixture]
     public class FeatureToggleFactoryTest
     {
+        #region Setup/Teardown
 
-        private FeatureToggleFactory _Factory;
-        private Mock<IFeatureToggleRepository> _repo ;
         [SetUp]
         public void Setup()
         {
             _repo = new Mock<IFeatureToggleRepository>();
-            _Factory = new FeatureToggleFactory(_repo.Object);
+            _factory = new FeatureToggleFactory(_repo.Object);
+        }
 
+        #endregion
+
+        private FeatureToggleFactory _factory;
+        private Mock<IFeatureToggleRepository> _repo;
+
+        [Test]
+        public void ShouldReturnNotToggledOnWhenOff()
+        {
+            _repo.Setup(repos => repos.GetToggleStatus("fake")).Returns(false);
+            Assert.AreEqual(false, _factory.GetFeatureToggle("fake").IsOn);
+        }
+
+        [Test]
+        public void ShouldReturnNotToggledOnWhenOnAndReversed()
+        {
+            _repo.Setup(repos => repos.GetToggleStatus("fake")).Returns(true);
+
+            Assert.AreEqual(false, _factory.GetFeatureToggle("fake", true).IsOn);
+        }
+
+        [Test]
+        public void ShouldReturnToggledOnWhenOffAndReversed()
+        {
+            _repo.Setup(repos => repos.GetToggleStatus("fake")).Returns(false);
+            Assert.AreEqual(true, _factory.GetFeatureToggle("fake", true).IsOn);
         }
 
         [Test]
         public void ShouldReturnToggledOnWhenOn()
         {
-
-            _repo.Setup<bool>(repos => repos.GetToggleStatus("fake")).Returns(true);
-            Assert.AreEqual(true, _Factory.GetFeatureToggle("fake").IsOn);
-        }
-        [Test]
-        public void ShouldReturnNotToggledOnWhenOff()
-        {
-            _repo.Setup<bool>(repos => repos.GetToggleStatus("fake")).Returns(false);
-            Assert.AreEqual(false, _Factory.GetFeatureToggle("fake").IsOn);
-        }
-        [Test]
-        public void ShouldReturnToggledOnWhenOffAndReversed()
-        {
-            _repo.Setup<bool>(repos => repos.GetToggleStatus("fake")).Returns(false);
-            Assert.AreEqual(true, _Factory.GetFeatureToggle("fake", true).IsOn);
-        }
-        [Test]
-        public void ShouldReturnNotToggledOnWhenOnAndReversed()
-        {
-            _repo.Setup<bool>(repos => repos.GetToggleStatus("fake")).Returns(true);
-
-            Assert.AreEqual(false, _Factory.GetFeatureToggle("fake", true).IsOn);
+            _repo.Setup(repos => repos.GetToggleStatus("fake")).Returns(true);
+            Assert.AreEqual(true, _factory.GetFeatureToggle("fake").IsOn);
         }
     }
 }

@@ -1,29 +1,32 @@
-﻿using System;
-
-namespace nToggle
+﻿namespace nToggle
 {
-   public class FeatureToggleFactory:IFeatureToggleFactory
+    public class FeatureToggleFactory : IFeatureToggleFactory
     {
+        private readonly IFeatureToggleRepository _toggleRepository;
 
-       IFeatureToggleRepository _ToggleRepository;
-       public FeatureToggleFactory(IFeatureToggleRepository repository){
-           _ToggleRepository = repository;
-       }
+        public FeatureToggleFactory(IFeatureToggleRepository repository)
+        {
+            _toggleRepository = repository;
+        }
 
-       public FeatureToggleFactory()
-       {
-           _ToggleRepository = new AppSettingsFeatureToggleRepository();
-       }
+        public FeatureToggleFactory()
+        {
+            _toggleRepository = new AppSettingsFeatureToggleRepository();
+        }
 
+        #region IFeatureToggleFactory Members
 
-       public IFeatureToggle GetFeatureToggle(string featureName, bool reversed)
-       {
-           var toggleRepositoryGetToggleStatus = _ToggleRepository.GetToggleStatus(featureName);
-           return new FeatureToggle(reversed ? !toggleRepositoryGetToggleStatus : toggleRepositoryGetToggleStatus);
-       }
-       public IFeatureToggle GetFeatureToggle(string FeatureName)
-       {
-           return new FeatureToggle(_ToggleRepository.GetToggleStatus(FeatureName));
-       }
+        public IFeatureToggle GetFeatureToggle(string featureName, bool reversed)
+        {
+            bool toggleRepositoryGetToggleStatus = _toggleRepository.GetToggleStatus(featureName);
+            return new FeatureToggle(reversed ? !toggleRepositoryGetToggleStatus : toggleRepositoryGetToggleStatus);
+        }
+
+        public IFeatureToggle GetFeatureToggle(string featureName)
+        {
+            return new FeatureToggle(_toggleRepository.GetToggleStatus(featureName));
+        }
+
+        #endregion
     }
 }

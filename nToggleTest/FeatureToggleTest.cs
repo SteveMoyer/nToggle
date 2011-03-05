@@ -1,6 +1,5 @@
-﻿using System;
+﻿using nToggle;
 using NUnit.Framework;
-using nToggle;
 
 namespace nToggleTest
 {
@@ -8,47 +7,43 @@ namespace nToggleTest
     public class FeatureToggleTest
     {
         [Test]
-        public void RunActionIfOnShouldRunActionWhenOn()
+        public void RunActionIfOffShouldNotRunActionWhenOn()
         {
-            FeatureToggle featureToggle = new FeatureToggle(true);
+            var featureToggle = new FeatureToggle(true);
 
             bool actionWasRun = false;
-            featureToggle.RunActionIfOn(() => { actionWasRun = true; });
-            Assert.IsTrue(actionWasRun);
-
-        }
-        [Test]
-        public void RunActionIfOnShouldNotRunActionWhenOff()
-        {
-            FeatureToggle featureToggle = new FeatureToggle(false);
-
-            bool actionWasRun = false;
-            featureToggle.RunActionIfOn(() => { actionWasRun = true; });
+            featureToggle.RunActionIfOff(() => { actionWasRun = true; });
             Assert.IsFalse(actionWasRun);
-
         }
+
         [Test]
         public void RunActionIfOffShouldRunActionWhenOff()
         {
-            FeatureToggle featureToggle = new FeatureToggle(false);
+            var featureToggle = new FeatureToggle(false);
 
             bool actionWasRun = false;
             featureToggle.RunActionIfOff(() => { actionWasRun = true; });
             Assert.IsTrue(actionWasRun);
-
         }
+
         [Test]
-        public void RunActionIfOffShouldNotRunActionWhenOn()
+        public void RunActionIfOnShouldNotRunActionWhenOff()
         {
-            FeatureToggle featureToggle = new FeatureToggle(true);
+            var featureToggle = new FeatureToggle(false);
 
             bool actionWasRun = false;
-            featureToggle.RunActionIfOff(() => { actionWasRun = true; });
+            featureToggle.RunActionIfOn(() => { actionWasRun = true; });
             Assert.IsFalse(actionWasRun);
-
         }
 
+        [Test]
+        public void RunActionIfOnShouldRunActionWhenOn()
+        {
+            var featureToggle = new FeatureToggle(true);
 
+            bool actionWasRun = false;
+            featureToggle.RunActionIfOn(() => { actionWasRun = true; });
+            Assert.IsTrue(actionWasRun);
+        }
     }
-    
 }

@@ -2,68 +2,58 @@
 using System.ComponentModel;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+
 namespace nToggle
 {
     [DefaultProperty("Text")]
     [ToolboxData("<{0}:FeatureToggle runat=server></{0}:FeatureToggle>")]
     public class WebFeatureToggle : PlaceHolder
     {
-        private IFeatureToggleFactory _FeatureFactory;
-        private IFeatureToggle _FeatureToggle;
-        string _removedBy = "";
-        string _enabledBy = "";
+        private readonly IFeatureToggleFactory _featureFactory;
+        private IFeatureToggle _featureToggle;
+        private string _enabledBy = "";
+        private string _removedBy = "";
+
         public WebFeatureToggle(IFeatureToggleFactory featureFactory)
         {
-            _FeatureFactory = featureFactory;
+            _featureFactory = featureFactory;
         }
+
         public WebFeatureToggle()
         {
-            _FeatureFactory = new FeatureToggleFactory();
+            _featureFactory = new FeatureToggleFactory();
         }
+
         [Bindable(true)]
-        
         [DefaultValue("")]
         [Localizable(true)]
         public string EnabledBy
         {
-            get
-            {
-                return _enabledBy;
-            }
+            get { return _enabledBy; }
 
-            set
-            {
-                _enabledBy = value;
-            }
+            set { _enabledBy = value; }
         }
+
         [Bindable(true)]
-       
         [DefaultValue("false")]
         [Localizable(true)]
         public string RemovedBy
         {
-            get
-            {
-                return _removedBy;
-            }
+            get { return _removedBy; }
 
-            set
-            {
-                _removedBy = value;
-            }
+            set { _removedBy = value; }
         }
 
         public void RunActionWhenDisabled(Action disabledAction)
         {
-            _FeatureToggle.RunActionIfOff(disabledAction);
-            
-            
+            _featureToggle.RunActionIfOff(disabledAction);
         }
+
         public void RunActionWhenEnabled(Action enabledAction)
         {
-            _FeatureToggle.RunActionIfOn(enabledAction);
-            
+            _featureToggle.RunActionIfOn(enabledAction);
         }
+
         private void ValidateProperties()
         {
             if (!String.IsNullOrWhiteSpace(RemovedBy) && !string.IsNullOrWhiteSpace(EnabledBy))
@@ -72,18 +62,20 @@ namespace nToggle
             if (string.IsNullOrWhiteSpace(RemovedBy) && string.IsNullOrWhiteSpace(EnabledBy))
                 throw new InvalidMarkupException("You must set RemovedBy or EnabledBy");
         }
+
         public void ApplyToggle()
         {
             ValidateProperties();
             Boolean reversed = string.IsNullOrWhiteSpace(EnabledBy);
             string featureName = reversed ? RemovedBy : EnabledBy;
 
-            _FeatureToggle = _FeatureFactory.GetFeatureToggle(featureName, reversed);
-            if (!_FeatureToggle.IsOn)
+            _featureToggle = _featureFactory.GetFeatureToggle(featureName, reversed);
+            if (!_featureToggle.IsOn)
             {
                 Controls.Clear();
             }
         }
+
         protected override void OnInit(EventArgs e)
         {
             ApplyToggle();
