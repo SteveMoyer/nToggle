@@ -13,21 +13,21 @@ namespace nToggleWebTestApp {
     public partial class ToggledOff {
         
         /// <summary>
-        /// FeatureToggle1 control.
+        /// WebFeatureToggle1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::nToggle.WebFeatureToggle FeatureToggle1;
+        protected global::nToggle.WebFeatureToggle WebFeatureToggle1;
         
         /// <summary>
-        /// FeatureToggle2 control.
+        /// WebFeatureToggle2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::nToggle.WebFeatureToggle FeatureToggle2;
+        protected global::nToggle.WebFeatureToggle WebFeatureToggle2;
     }
 }

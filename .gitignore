@@ -3,3 +3,5 @@ TraceAndTestImpact.testsettings
 nToggle.suo
 nToggle.vsmdi
 TestResults/
+*.user
+_ReSharper*

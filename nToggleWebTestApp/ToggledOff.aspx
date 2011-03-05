@@ -9,11 +9,11 @@
     <title></title>
 </head>
 <body>
-  <nToggle:WebFeatureToggle ID="FeatureToggle1" EnabledBy="TestFeatureOff" runat="server" >
-    <span id="enabledby">Turned Off</span>
+  <nToggle:WebFeatureToggle ID="WebFeatureToggle1" EnabledBy="TestFeatureOff" runat="server" >
+    <span id="enabledby"> Feature Turned Off</span>
     </nToggle:WebFeatureToggle>
-    <nToggle:WebFeatureToggle ID="FeatureToggle2" RemovedBy="TestFeatureOff"  runat="server" >
-    <span id="removedby">Turned Off But Reversed</span>
+    <nToggle:WebFeatureToggle ID="WebFeatureToggle2" RemovedBy="TestFeatureOff"  runat="server" >
+    <span id="removedby">Feature Turned Off But Toggle is remove by feature</span>
     </nToggle:WebFeatureToggle>
   
 </body>

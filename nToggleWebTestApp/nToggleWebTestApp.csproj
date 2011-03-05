@@ -55,6 +55,7 @@
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="ToggledInCodeBehind.aspx" />
     <Content Include="ToggledOff.aspx" />
     <Content Include="ToggledOn.aspx" />
     <Content Include="Web.config">
@@ -72,6 +73,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ToggledInCodeBehind.aspx.cs">
+      <DependentUpon>ToggledInCodeBehind.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ToggledInCodeBehind.aspx.designer.cs">
+      <DependentUpon>ToggledInCodeBehind.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ToggledOff.aspx.cs">
       <DependentUpon>ToggledOff.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
