@@ -31,6 +31,10 @@ Remove controls from a web page based on a feature toggle:
 	<span id="removedby">Feature Turned Off But Toggle is remove by feature</span>
 </nToggle:WebFeatureToggle>
   
+ ************ Warning: Asp.net does not populate the  controls collection with inline script tags so the following is NOT valid 
+<nToggle:WebFeatureToggle ID="FeatureToggle1" EnabledBy="TestFeatureOff" runat="server" >
+	<span id="enabledby"> <%= "Feature Turned Off" %></span>
+</nToggle:WebFeatureToggle>
 
 
 Run code in a Code Behind based on a feature toggle:

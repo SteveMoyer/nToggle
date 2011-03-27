@@ -72,6 +72,10 @@ namespace nToggle
             _featureToggle = _featureFactory.GetFeatureToggle(featureName, reversed);
             if (!_featureToggle.IsOn)
             {
+                if (Controls.Count == 0)
+                    throw new InvalidMarkupException(
+                        "There are no controls to remove. Controls will not be present if you have inline script within your markup.  A possible workaround it to move script to code behind.");
+
                 Controls.Clear();
             }
         }
