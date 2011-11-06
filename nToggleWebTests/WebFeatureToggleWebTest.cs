@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Chrome;
 
 namespace nToggleWebTests
 {
@@ -12,7 +12,7 @@ namespace nToggleWebTests
         [SetUp]
         public void Setup()
         {
-            _driver = new FirefoxDriver();
+            _driver = new ChromeDriver();
         }
 
         [TearDown]
@@ -53,6 +53,38 @@ namespace nToggleWebTests
             try
             {
                 _driver.FindElement(By.Id("removedby"));
+                Assert.Fail("removed control was not removed");
+            }
+            catch (NoSuchElementException)
+            {
+            }
+        }
+        [Test]
+        public void ShouldShowEnabledAndHideRemovedForDynamicToggle()
+        {
+            _driver.Url = BaseAddress + "DynamicOn.aspx";
+            IWebElement enabledelement = _driver.FindElement(By.Id("enabledby"));
+            Assert.IsTrue(enabledelement != null, "enabled control was removed");
+
+            try
+            {
+                _driver.FindElement(By.Id("removedby"));
+                Assert.Fail("removed control was not removed");
+            }
+            catch (NoSuchElementException)
+            {
+            }
+        }
+        [Test]
+        public void ShouldHidEnabledAndShowRemovedWhenFeatureIsOnButDynamicFeatureIsOff()
+        {
+            _driver.Url = BaseAddress + "DynamicOff.aspx";
+            IWebElement enabledelement = _driver.FindElement(By.Id("removedby"));
+            Assert.IsTrue(enabledelement != null, "enabled control was removed");
+
+            try
+            {
+                _driver.FindElement(By.Id("enabledby"));
                 Assert.Fail("removed control was not removed");
             }
             catch (NoSuchElementException)

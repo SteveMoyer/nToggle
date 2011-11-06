@@ -58,7 +58,6 @@
     <Compile Include="FeatureToggleFactoryTest.cs" />
     <Compile Include="WebFeatureToggleTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AppSettingsToggleRepositoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\nToggle\nToggle.csproj">

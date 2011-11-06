@@ -50,6 +50,9 @@
     <Reference Include="System.Web.ApplicationServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ABToggling.aspx" />
+    <Content Include="DynamicOn.aspx" />
+    <Content Include="DynamicOff.aspx" />
     <Content Include="Styles\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
@@ -69,6 +72,27 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ABToggling.aspx.cs">
+      <DependentUpon>ABToggling.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABToggling.aspx.designer.cs">
+      <DependentUpon>ABToggling.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicOn.aspx.cs">
+      <DependentUpon>DynamicOn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DynamicOn.aspx.designer.cs">
+      <DependentUpon>DynamicOn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicOff.aspx.cs">
+      <DependentUpon>DynamicOff.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DynamicOff.aspx.designer.cs">
+      <DependentUpon>DynamicOff.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -99,6 +123,10 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\nToggleDynamicFeatureTest\nToggleDynamicFeatureTest.csproj">
+      <Project>{C28837B6-F2AB-42F0-8EAF-A0D4149A654B}</Project>
+      <Name>nToggleDynamicFeatureTest</Name>
+    </ProjectReference>
     <ProjectReference Include="..\nToggle\nToggle.csproj">
       <Project>{839D1BD2-1B92-416F-A339-4E145EFAB32E}</Project>
       <Name>nToggle</Name>

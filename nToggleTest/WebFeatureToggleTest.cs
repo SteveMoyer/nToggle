@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Web.UI.WebControls;
+using System.Web.UI;
 using Moq;
 using nToggle;
 using NUnit.Framework;
@@ -9,18 +9,17 @@ namespace nToggleTest
     [TestFixture]
     public class WebFeatureToggleTest
     {
-        #region Setup/Teardown
-
+       
         [SetUp]
         public void Setup()
         {
             _mockFeatureToggleFactory = new Mock<IFeatureToggleFactory>();
             _featureToggle = new WebFeatureToggle(_mockFeatureToggleFactory.Object);
+            _featureToggle.Controls.Add(new LiteralControl());
             _mockFeatureToggle = new Mock<IFeatureToggle>();
         }
 
-        #endregion
-
+       
         private Mock<IFeatureToggle> _mockFeatureToggle;
         private Mock<IFeatureToggleFactory> _mockFeatureToggleFactory;
         private WebFeatureToggle _featureToggle;
@@ -54,7 +53,6 @@ namespace nToggleTest
         [Test]
         public void ShouldClearControlsWhenFeatureNotEnabled()
         {
-            _featureToggle.Controls.Add(new Literal());
             _featureToggle.EnabledBy = "fake";
             _mockFeatureToggleFactory.Setup(fact => fact.GetFeatureToggle("fake", false)).Returns(
                 new FeatureToggle(false));
@@ -66,7 +64,6 @@ namespace nToggleTest
         [Test]
         public void ShouldClearControlsWhenFeatureRemoved()
         {
-            _featureToggle.Controls.Add(new Literal());
             _featureToggle.RemovedBy = "fake";
             _mockFeatureToggleFactory.Setup(fact => fact.GetFeatureToggle("fake", true)).Returns(new FeatureToggle(false));
             _featureToggle.ApplyToggle();
@@ -77,7 +74,6 @@ namespace nToggleTest
         [Test]
         public void ShouldNotClearControlsWhenFeatureEnabled()
         {
-            _featureToggle.Controls.Add(new Literal());
             _featureToggle.EnabledBy = "fake";
             _mockFeatureToggleFactory.Setup(fact => fact.GetFeatureToggle("fake", false)).Returns(new FeatureToggle(true));
             _featureToggle.ApplyToggle();
@@ -88,7 +84,6 @@ namespace nToggleTest
         [Test]
         public void ShouldNotClearControlsWhenFeatureNotRemoved()
         {
-            _featureToggle.Controls.Add(new Literal());
             _featureToggle.RemovedBy = "fake";
             _mockFeatureToggleFactory.Setup(fact => fact.GetFeatureToggle("fake", true)).Returns(new FeatureToggle(true));
             _featureToggle.ApplyToggle();

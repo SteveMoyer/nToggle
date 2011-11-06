@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{839D1BD2-1B92-416F-A339-4E145EFAB32E}</ProjectGuid>
+    <ProjectGuid>{C28837B6-F2AB-42F0-8EAF-A0D4149A654B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>nToggle</RootNamespace>
-    <AssemblyName>nToggle</AssemblyName>
+    <RootNamespace>nToggleDynamicFeatureTest</RootNamespace>
+    <AssemblyName>nToggleDynamicFeatureTest</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,9 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -43,17 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\ToggleElement.cs" />
-    <Compile Include="Configuration\ToggleElementCollection.cs" />
-    <Compile Include="FeatureToggle.cs" />
-    <Compile Include="Configuration\ToggleConfigurationSection.cs" />
-    <Compile Include="WebFeatureToggle.cs" />
-    <Compile Include="FeatureToggleFactory.cs" />
-    <Compile Include="IFeatureToggle.cs" />
-    <Compile Include="IFeatureToggleFactory.cs" />
-    <Compile Include="IFeatureToggleRepository.cs" />
-    <Compile Include="InvalidMarkupException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestDynamicRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\nToggle\nToggle.csproj">
+      <Project>{839D1BD2-1B92-416F-A339-4E145EFAB32E}</Project>
+      <Name>nToggle</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

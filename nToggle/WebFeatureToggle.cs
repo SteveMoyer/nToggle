@@ -21,7 +21,7 @@ namespace nToggle
 
         public WebFeatureToggle()
         {
-            _featureFactory = new FeatureToggleFactory();
+            _featureFactory = FeatureToggleFactory.CurrentFactory;
         }
 
         [Bindable(true)]

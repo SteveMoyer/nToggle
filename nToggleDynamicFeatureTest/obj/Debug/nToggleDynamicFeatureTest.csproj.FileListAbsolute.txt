@@ -1,0 +1,7 @@
+C:\projects\nToggle\nToggleDynamicFeatureTest\bin\Debug\nToggleDynamicFeatureTest.dll
+C:\projects\nToggle\nToggleDynamicFeatureTest\bin\Debug\nToggleDynamicFeatureTest.pdb
+C:\projects\nToggle\nToggleDynamicFeatureTest\bin\Debug\nToggle.dll
+C:\projects\nToggle\nToggleDynamicFeatureTest\bin\Debug\nToggle.pdb
+C:\projects\nToggle\nToggleDynamicFeatureTest\obj\Debug\ResolveAssemblyReference.cache
+C:\projects\nToggle\nToggleDynamicFeatureTest\obj\Debug\nToggleDynamicFeatureTest.dll
+C:\projects\nToggle\nToggleDynamicFeatureTest\obj\Debug\nToggleDynamicFeatureTest.pdb

@@ -42,6 +42,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WebDriver.Chrome">
+      <HintPath>..\lib\selenium\WebDriver.Chrome.dll</HintPath>
+    </Reference>
     <Reference Include="WebDriver.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\selenium\WebDriver.Common.dll</HintPath>
