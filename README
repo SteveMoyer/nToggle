@@ -3,19 +3,32 @@ Feature Toggling for .net
 for more information on the concept of feature toggle see http://martinfowler.com/bliki/FeatureToggle.html
 
 Usage
-
-Turning a on or off in the web.config:
+**** nToggle no longer supports appSettings and is now configured by using it's own configSection
 <?xml version="1.0"?>
 <configuration>
-  <appSettings>
-	<add key="TestFeatureOn" value="True"/>
-	<add key="TestFeatureOff" value="False"/>
-  </appSettings>
+  <configSections>
+    <section
+      name="nToggle"
+      type="nToggle.Configuration.ToggleConfigurationSection"
+      allowLocation="true"
+      allowDefinition="Everywhere"
+      />
+  </configSections>
+  
+  <nToggle>
+    <toggles>
+      <add name="TestFeatureOn" value="True"/>
+      <add name="TestFeatureOff" value="False"/>
+      /*The following toggle will associate a custom IFeatureToggleRepository with the given toggle.  
+	    Custom repositories can enable things like A/B testing*/
+      <add name="DynamicFeature" factory="nToggleDynamicFeatureTest,nToggleDynamicFeatureTest.TestDynamicRepository" value="True"/>
+    </toggles>
+  </nToggle>
   <system.webServer>
-		<modules runAllManagedModulesForAllRequests="true"/>
-	</system.webServer>
-	<system.web>
-		<compilation debug="true"/>
+        <modules runAllManagedModulesForAllRequests="true"/>
+    </system.webServer>
+    <system.web>
+        <compilation debug="true"/>
   </system.web>
 </configuration>
 
@@ -25,31 +38,31 @@ Remove controls from a web page based on a feature toggle:
 
 <%@ Register assembly="nToggle" namespace="nToggle" tagprefix="nToggle" %>
 <nToggle:WebFeatureToggle ID="FeatureToggle1" EnabledBy="TestFeatureOff" runat="server" >
-	<span id="enabledby"> Feature Turned Off</span>
+    <span id="enabledby"> Feature Turned Off</span>
 </nToggle:WebFeatureToggle>
 <nToggle:WebFeatureToggle ID="FeatureToggle2" RemovedBy="TestFeatureOff"  runat="server" >
-	<span id="removedby">Feature Turned Off But Toggle is remove by feature</span>
+    <span id="removedby">Feature Turned Off But Toggle is remove by feature</span>
 </nToggle:WebFeatureToggle>
   
  ************ Warning: Asp.net does not populate the  controls collection with inline script tags so the following is NOT valid 
 <nToggle:WebFeatureToggle ID="FeatureToggle1" EnabledBy="TestFeatureOff" runat="server" >
-	<span id="enabledby"> <%= "Feature Turned Off" %></span>
+    <span id="enabledby"> <%= "Feature Turned Off" %></span>
 </nToggle:WebFeatureToggle>
 
 
 Run code in a Code Behind based on a feature toggle:
 protected void Page_Load(object sender, EventArgs e)
-		{
-			WebFeatureToggle1.RunActionWhenDisabled(CodeToRunIfDisabled);
-			WebFeatureToggle1.RunActionWhenEnabled(CodeToRunIfEnabled);
-		}
-		protected void CodeToRunIfDisabled()
-		{
-		//your code
-		}
-		protected void CodeToRunIfEnabled()
-		{
-		//your code
-		}
+        {
+            WebFeatureToggle1.RunActionWhenDisabled(CodeToRunIfDisabled);
+            WebFeatureToggle1.RunActionWhenEnabled(CodeToRunIfEnabled);
+        }
+        protected void CodeToRunIfDisabled()
+        {
+        //your code
+        }
+        protected void CodeToRunIfEnabled()
+        {
+        //your code
+        }
 
 
