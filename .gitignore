@@ -5,3 +5,5 @@ nToggle.vsmdi
 TestResults/
 *.user
 _ReSharper*
+obj
+bin

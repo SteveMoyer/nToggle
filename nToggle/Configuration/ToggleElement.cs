@@ -6,15 +6,15 @@ namespace nToggle.Configuration
     public class ToggleElement: ConfigurationElement
     {
         private const string ValueProperty = "value";
-        private const string FactoryProperty = "factory";
+        private const string RepositoryProperty = "repository";
         private const string NameProperty = "name";
         private const string DefaultFactoryClass = null;
 
         public ToggleElement(String name,
-                              String factory)
+                              String repository)
         {
             Name = name;
-            Factory = factory;
+            Repository = repository;
         }
 
         public ToggleElement()
@@ -41,18 +41,18 @@ namespace nToggle.Configuration
             }
         }
 
-        [ConfigurationProperty(FactoryProperty,
+        [ConfigurationProperty(RepositoryProperty,
             DefaultValue = DefaultFactoryClass,
             IsRequired = false)]
-        public string Factory
+        public string Repository
         {
             get
             {
-                return (string)this[FactoryProperty];
+                return (string)this[RepositoryProperty];
             }
             set
             {
-                this[FactoryProperty] = value;
+                this[RepositoryProperty] = value;
             }
         }
 

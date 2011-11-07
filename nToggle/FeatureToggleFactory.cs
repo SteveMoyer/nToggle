@@ -33,14 +33,14 @@ namespace nToggle
             var staticToggleRepository = new StaticToggleRepository(toggleValueDictionary);
             foreach (ToggleElement toggle in config.Toggles)
             {
-                if (!toggle.Value || String.IsNullOrEmpty(toggle.Factory))
+                if (!toggle.Value || String.IsNullOrEmpty(toggle.Repository))
                 {
                     toggleRepositoryDictionary.Add(toggle.Name, staticToggleRepository);
                     toggleValueDictionary.Add(toggle.Name, toggle.Value);
                 }
                 else
                 {
-                    var strings = toggle.Factory.Split(',');
+                    var strings = toggle.Repository.Split(',');
 
                     var dynamicRepo =
                         (IFeatureToggleRepository) Activator.CreateInstance(strings[0], strings[1]).Unwrap();
