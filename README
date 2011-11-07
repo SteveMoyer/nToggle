@@ -21,7 +21,7 @@ Usage
       <add name="TestFeatureOff" value="False"/>
       /*The following toggle will associate a custom IFeatureToggleRepository with the given toggle.  
 	    Custom repositories can enable things like A/B testing*/
-      <add name="DynamicFeature" factory="nToggleDynamicFeatureTest,nToggleDynamicFeatureTest.TestDynamicRepository" value="True"/>
+      <add name="DynamicFeature" repository="nToggleDynamicFeatureTest,nToggleDynamicFeatureTest.TestDynamicRepository" value="True"/>
     </toggles>
   </nToggle>
   <system.webServer>
