@@ -43,10 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConditionFeatureToggle.cs" />
     <Compile Include="Configuration\ToggleElement.cs" />
     <Compile Include="Configuration\ToggleElementCollection.cs" />
     <Compile Include="FeatureToggle.cs" />
     <Compile Include="Configuration\ToggleConfigurationSection.cs" />
+    <Compile Include="IConditionFeatureToggle.cs" />
     <Compile Include="WebFeatureToggle.cs" />
     <Compile Include="FeatureToggleFactory.cs" />
     <Compile Include="IFeatureToggle.cs" />

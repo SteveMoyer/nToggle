@@ -8,61 +8,58 @@ namespace nToggleTest
     [TestFixture]
     public class FeatureToggleFactoryTest
     {
-       
+        private FeatureToggleFactory factory;
+        private Mock<IFeatureToggleRepository> repo;
+        private Dictionary<string, IFeatureToggleRepository> toggleRepositoryDictionary;
+        
         [SetUp]
         public void Setup()
         {
-            _toggleRepositoryDictionary = new Dictionary<string, IFeatureToggleRepository>();
-            _repo = new Mock<IFeatureToggleRepository>();
-            _factory = new FeatureToggleFactory(_toggleRepositoryDictionary);
+            toggleRepositoryDictionary = new Dictionary<string, IFeatureToggleRepository>();
+            repo = new Mock<IFeatureToggleRepository>();
+            factory = new FeatureToggleFactory(toggleRepositoryDictionary);
         }
 
-       
-        private FeatureToggleFactory _factory;
-        private Mock<IFeatureToggleRepository> _repo;
-        private Dictionary<string, IFeatureToggleRepository> _toggleRepositoryDictionary;
-        
         [Test]
         public void ShouldReturnNotToggledOnWhenOff()
         {
-            _toggleRepositoryDictionary.Add("fake",_repo.Object);
-            _repo.Setup(repos => repos.GetToggleStatus("fake")).Returns(false);
-            Assert.AreEqual(false, _factory.GetFeatureToggle("fake").IsOn);
+            toggleRepositoryDictionary.Add("fake",repo.Object);
+            repo.Setup(repos => repos.GetToggleStatus("fake")).Returns(false);
+            Assert.AreEqual(false, factory.GetFeatureToggle("fake").IsOn);
         }
-
 
         [Test]
         public void ShouldReturnFalseWhenToggleNotConfigured()
         {
-            Assert.AreEqual(false, _factory.GetFeatureToggle("fake").IsOn);
+            Assert.AreEqual(false, factory.GetFeatureToggle("fake").IsOn);
         }
 
         [Test]
         public void ShouldReturnNotToggledOnWhenOnAndReversed()
         {
-            _toggleRepositoryDictionary.Add("fake", _repo.Object);
+            toggleRepositoryDictionary.Add("fake", repo.Object);
            
-            _repo.Setup(repos => repos.GetToggleStatus("fake")).Returns(true);
+            repo.Setup(repos => repos.GetToggleStatus("fake")).Returns(true);
 
-            Assert.AreEqual(false, _factory.GetFeatureToggle("fake", true).IsOn);
+            Assert.AreEqual(false, factory.GetFeatureToggle("fake", true).IsOn);
         }
 
         [Test]
         public void ShouldReturnToggledOnWhenOffAndReversed()
         {
-            _toggleRepositoryDictionary.Add("fake", _repo.Object);
+            toggleRepositoryDictionary.Add("fake", repo.Object);
            
-            _repo.Setup(repos => repos.GetToggleStatus("fake")).Returns(false);
-            Assert.AreEqual(true, _factory.GetFeatureToggle("fake", true).IsOn);
+            repo.Setup(repos => repos.GetToggleStatus("fake")).Returns(false);
+            Assert.AreEqual(true, factory.GetFeatureToggle("fake", true).IsOn);
         }
 
         [Test]
         public void ShouldReturnToggledOnWhenOn()
         {
-            _toggleRepositoryDictionary.Add("fake", _repo.Object);
+            toggleRepositoryDictionary.Add("fake", repo.Object);
            
-            _repo.Setup(repos => repos.GetToggleStatus("fake")).Returns(true);
-            Assert.AreEqual(true, _factory.GetFeatureToggle("fake").IsOn);
+            repo.Setup(repos => repos.GetToggleStatus("fake")).Returns(true);
+            Assert.AreEqual(true, factory.GetFeatureToggle("fake").IsOn);
         }
     }
 }
