@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration>Debug</Configuration>
+    <NUnitToolPath>lib\nunit\nunit-console.exe</NUnitToolPath>
+  </PropertyGroup>
+  
+  <Target Name="Build" DependsOnTargets="Clean;Compile;Test" />
+
+  <Target Name="Clean">
+    <Message Text="Start Cleaning"/>
+    <MSBuild Projects="nToggle.sln" Properties="Configuration=$(Configuration)" BuildInParallel="true" Targets="Clean" />
+    <Message Text="Stop Cleaning"/>
+  </Target>
+
+  <Target Name="Compile">
+    <Message Text="Start Compiling"/>
+    <MSBuild Projects="nToggle.sln" Properties="Configuration=$(Configuration);Platform=Any Cpu" BuildInParallel="true" />
+    <Message Text="Stop Compiling"/>
+  </Target>
+
+  <Target Name="Test">
+    <Message Text="Start Runing Test"/>
+    <Exec Command="$(NUnitToolPath) nToggleTest\bin\$(Configuration)\nToggleTest.dll" />
+    <Message Text="Stop Runing Test"/>
+  </Target>
+</Project>

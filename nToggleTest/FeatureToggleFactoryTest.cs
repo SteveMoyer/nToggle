@@ -11,13 +11,16 @@ namespace nToggleTest
         private FeatureToggleFactory factory;
         private Mock<IFeatureToggleRepository> repo;
         private Dictionary<string, IFeatureToggleRepository> toggleRepositoryDictionary;
+        private Dictionary<string, bool> toggleGlobalSettingDictionary;
+        
         
         [SetUp]
         public void Setup()
         {
             toggleRepositoryDictionary = new Dictionary<string, IFeatureToggleRepository>();
+            toggleGlobalSettingDictionary = new Dictionary<string, bool>();
             repo = new Mock<IFeatureToggleRepository>();
-            factory = new FeatureToggleFactory(toggleRepositoryDictionary);
+            factory = new FeatureToggleFactory(toggleRepositoryDictionary, toggleGlobalSettingDictionary);
         }
 
         [Test]
@@ -60,6 +63,24 @@ namespace nToggleTest
            
             repo.Setup(repos => repos.GetToggleStatus("fake")).Returns(true);
             Assert.AreEqual(true, factory.GetFeatureToggle("fake").IsOn);
+        }
+
+        [Test]
+        public void IsGlobalOnShouldReturnTrueWhenSetToTrueInConfig()
+        {
+            var featureName = "condition";
+            toggleGlobalSettingDictionary.Add(featureName, true);
+            toggleRepositoryDictionary.Add(featureName, repo.Object);
+            Assert.IsTrue(factory.GetConditionFeatureToggle(featureName).IsGlobalOn);
+        }
+
+        [Test]
+        public void IsGlobalOnShouldReturnFaleWhenSetToFalseInConfig()
+        {
+            var featureName = "condition";
+            toggleGlobalSettingDictionary.Add(featureName, false);
+            toggleRepositoryDictionary.Add(featureName, repo.Object);
+            Assert.IsFalse(factory.GetConditionFeatureToggle(featureName).IsGlobalOn);
         }
     }
 }

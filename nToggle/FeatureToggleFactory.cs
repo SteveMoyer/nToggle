@@ -8,7 +8,7 @@ namespace nToggle
     public class FeatureToggleFactory : IFeatureToggleFactory
     {
         private readonly Dictionary<string, IFeatureToggleRepository> toggleRepositoryDictionary;
-        private static readonly Dictionary<string, bool> toggleGlobalSettingDictionary = new Dictionary<string, bool>();
+        private readonly Dictionary<string, bool> toggleGlobalSettingDictionary;
         private static FeatureToggleFactory currentFactory;
 
         public static FeatureToggleFactory CurrentFactory
@@ -21,6 +21,7 @@ namespace nToggle
         {
             var config = (ToggleConfigurationSection) ConfigurationManager.GetSection("nToggle");
             var toggleRepositoryDictionary = new Dictionary<String, IFeatureToggleRepository>();
+            var toggleGlobalSettingDictionary = new Dictionary<String, bool>();
             var toggleValueDictionary = new Dictionary<String, bool>();
             var staticToggleRepository = new StaticToggleRepository(toggleValueDictionary);
             foreach (ToggleElement toggle in config.Toggles)
@@ -39,15 +40,15 @@ namespace nToggle
                 }
             }
 
-            return new FeatureToggleFactory(toggleRepositoryDictionary);
+            return new FeatureToggleFactory(toggleRepositoryDictionary, toggleGlobalSettingDictionary);
         }
 
 
-        public FeatureToggleFactory(Dictionary<string, IFeatureToggleRepository> toggleRepositoryDictionary)
+        public FeatureToggleFactory(Dictionary<string, IFeatureToggleRepository> toggleRepositoryDictionary, Dictionary<string, bool> toggleGlobalSettingDictionary)
         {
             this.toggleRepositoryDictionary = toggleRepositoryDictionary;
+            this.toggleGlobalSettingDictionary = toggleGlobalSettingDictionary;
         }
-
 
         public IFeatureToggle GetFeatureToggle(string featureName, bool reversed)
         {
@@ -76,11 +77,7 @@ namespace nToggle
             {
 
             }
-            if(!reversed)
-            {
-                return new ConditionFeatureToggle(statusFromRepository, toggleGlobalSettingDictionary[featureName]);
-            }
-            return new ConditionFeatureToggle(!statusFromRepository, !toggleGlobalSettingDictionary[featureName]);
+            return !reversed ? new ConditionFeatureToggle(statusFromRepository, toggleGlobalSettingDictionary[featureName]) : new ConditionFeatureToggle(!statusFromRepository, !toggleGlobalSettingDictionary[featureName]);
         }
 
         public IFeatureToggle GetFeatureToggle(string featureName)

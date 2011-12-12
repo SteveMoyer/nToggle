@@ -2,8 +2,9 @@ Local.testsettings
 TraceAndTestImpact.testsettings
 nToggle.suo
 nToggle.vsmdi
-TestResults/
+TestResult.xml
 *.user
 _ReSharper*
 obj
 bin
+

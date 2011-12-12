@@ -1,0 +1,1 @@
+msbuild.exe build.xml //t:Build
