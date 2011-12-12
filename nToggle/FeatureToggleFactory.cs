@@ -58,7 +58,7 @@ namespace nToggle
                 statusFromRepository = toggleRepositoryDictionary[featureName].GetToggleStatus(featureName);
              
             }
-            catch (KeyNotFoundException ex)
+            catch (KeyNotFoundException)
             {
              
             }
@@ -67,17 +67,18 @@ namespace nToggle
 
         public IConditionFeatureToggle GetConditionFeatureToggle(string featureName, bool reversed)
         {
-            var statusFromRepository = false;
+            var featureToggle = GetFeatureToggle(featureName, reversed);
+
+            var globalSetting = false;
             try
             {
-                statusFromRepository = toggleRepositoryDictionary[featureName].GetToggleStatus(featureName);
-
+                globalSetting = toggleGlobalSettingDictionary[featureName];
             }
-            catch (KeyNotFoundException ex)
+            catch (KeyNotFoundException)
             {
-
             }
-            return !reversed ? new ConditionFeatureToggle(statusFromRepository, toggleGlobalSettingDictionary[featureName]) : new ConditionFeatureToggle(!statusFromRepository, !toggleGlobalSettingDictionary[featureName]);
+
+            return !reversed ? new ConditionFeatureToggle(featureToggle, globalSetting) : new ConditionFeatureToggle(featureToggle, !globalSetting);
         }
 
         public IFeatureToggle GetFeatureToggle(string featureName)

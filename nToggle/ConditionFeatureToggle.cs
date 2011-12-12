@@ -11,6 +11,10 @@ namespace nToggle
             this.isGlobalOn = isGlobalOn;
         }
 
+        public ConditionFeatureToggle(IFeatureToggle featureToggle, bool isGlobalOn) : base(featureToggle.IsOn)
+        {
+            this.isGlobalOn = isGlobalOn;
+        }
 
         public bool IsGlobalOn
         {

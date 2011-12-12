@@ -75,12 +75,42 @@ namespace nToggleTest
         }
 
         [Test]
+        public void IsGlobalOnShouldReturnTrueWhenSetToFalseInConfigAndNeedToBeReversed()
+        {
+            var featureName = "condition";
+            toggleGlobalSettingDictionary.Add(featureName, false);
+            toggleRepositoryDictionary.Add(featureName, repo.Object);
+            Assert.IsTrue(factory.GetConditionFeatureToggle(featureName, true).IsGlobalOn);
+        }
+
+        [Test]
+        public void IsGlobalOnShouldReturnFalseWhenSetToTrueInConfigAndNeedToBeReversed()
+        {
+            var featureName = "condition";
+            toggleGlobalSettingDictionary.Add(featureName, true);
+            toggleRepositoryDictionary.Add(featureName, repo.Object);
+            Assert.IsFalse(factory.GetConditionFeatureToggle(featureName, true).IsGlobalOn);
+        }
+
+        [Test]
         public void IsGlobalOnShouldReturnFaleWhenSetToFalseInConfig()
         {
             var featureName = "condition";
             toggleGlobalSettingDictionary.Add(featureName, false);
             toggleRepositoryDictionary.Add(featureName, repo.Object);
             Assert.IsFalse(factory.GetConditionFeatureToggle(featureName).IsGlobalOn);
+        }
+
+        [Test]
+        public void IsGlobalOnShouldReturnFaleWhenItIsNotSetInConfig()
+        {
+            Assert.IsFalse(factory.GetConditionFeatureToggle("NotExist").IsGlobalOn);
+        }
+
+        [Test]
+        public void IsGlobalOnShouldReturnTrueWhenItIsNotSetInConfigAndNeedToBeReversed()
+        {
+            Assert.IsTrue(factory.GetConditionFeatureToggle("NotExist", true).IsGlobalOn);
         }
     }
 }
