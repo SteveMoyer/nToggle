@@ -4,7 +4,7 @@ using nToggle;
 namespace nToggleTest
 {
     [TestClass]
-    public class ConditionFeatureToggleTest
+    public class ConditionalFeatureToggleTest
     {
         [TestMethod]
         public void RunActionIfGlobalOnShouldRunActionWhenGlobalIsOn()
