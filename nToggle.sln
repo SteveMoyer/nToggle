@@ -12,10 +12,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B12E581D-AC9D-4248-847A-70E478258774}"
 	ProjectSection(SolutionItems) = preProject
 		build.xml = build.xml
-		Local.testsettings = Local.testsettings
 		nToggle.vsmdi = nToggle.vsmdi
 		README = README
-		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nToggleDynamicFeatureTest", "nToggleDynamicFeatureTest\nToggleDynamicFeatureTest.csproj", "{C28837B6-F2AB-42F0-8EAF-A0D4149A654B}"

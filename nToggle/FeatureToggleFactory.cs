@@ -7,15 +7,65 @@ namespace nToggle
 {
     public class FeatureToggleFactory : IFeatureToggleFactory
     {
-        private readonly Dictionary<string, IFeatureToggleRepository> toggleRepositoryDictionary;
-        private readonly Dictionary<string, bool> toggleGlobalSettingDictionary;
-        private static FeatureToggleFactory currentFactory;
+        private static FeatureToggleFactory _currentFactory;
+        private readonly Dictionary<string, bool> _toggleGlobalSettingDictionary;
+        private readonly Dictionary<string, IFeatureToggleRepository> _toggleRepositoryDictionary;
+
+
+        public FeatureToggleFactory(Dictionary<string, IFeatureToggleRepository> toggleRepositoryDictionary,
+                                    Dictionary<string, bool> toggleGlobalSettingDictionary)
+        {
+            _toggleRepositoryDictionary = toggleRepositoryDictionary;
+            _toggleGlobalSettingDictionary = toggleGlobalSettingDictionary;
+        }
 
         public static FeatureToggleFactory CurrentFactory
         {
-            get { return currentFactory ?? (currentFactory = LoadFactory()); }
-            set { currentFactory = value; }
+            get { return _currentFactory ?? (_currentFactory = LoadFactory()); }
+            set { _currentFactory = value; }
         }
+
+        #region IFeatureToggleFactory Members
+
+        public IFeatureToggle GetFeatureToggle(string featureName, bool reversed)
+        {
+            bool statusFromRepository = false;
+            try
+            {
+                statusFromRepository = _toggleRepositoryDictionary[featureName].GetToggleStatus(featureName);
+            }
+            catch (KeyNotFoundException)
+            {
+            }
+            return new FeatureToggle(reversed ? !statusFromRepository : statusFromRepository);
+        }
+
+        public IConditionalFeatureToggle GetConditionFeatureToggle(string featureName, bool reversed)
+        {
+            IFeatureToggle featureToggle = GetFeatureToggle(featureName, reversed);
+
+            bool globalSetting = false;
+            if (_toggleGlobalSettingDictionary.ContainsKey(featureName))
+            {
+                globalSetting = _toggleGlobalSettingDictionary[featureName];
+            }
+
+            return !reversed
+                       ? new ConditionalFeatureToggle(featureToggle, globalSetting)
+                       : new ConditionalFeatureToggle(featureToggle, !globalSetting);
+        }
+
+        public IFeatureToggle GetFeatureToggle(string featureName)
+        {
+            return GetFeatureToggle(featureName, false);
+        }
+
+        public IConditionalFeatureToggle GetConditionFeatureToggle(string featureName)
+        {
+            return GetConditionFeatureToggle(featureName, false);
+        }
+
+        #endregion
 
         private static FeatureToggleFactory LoadFactory()
         {
@@ -34,76 +84,33 @@ namespace nToggle
                 }
                 else
                 {
-                    var strings = toggle.Repository.Split(',');
-                    var dynamicRepo = (IFeatureToggleRepository) Activator.CreateInstance(strings[0], strings[1]).Unwrap();
-                    toggleRepositoryDictionary.Add(toggle.Name,dynamicRepo);
+                    string[] strings = toggle.Repository.Split(',');
+                    var dynamicRepo =
+                        (IFeatureToggleRepository) Activator.CreateInstance(strings[0], strings[1]).Unwrap();
+                    toggleRepositoryDictionary.Add(toggle.Name, dynamicRepo);
                 }
             }
 
             return new FeatureToggleFactory(toggleRepositoryDictionary, toggleGlobalSettingDictionary);
         }
-
-
-        public FeatureToggleFactory(Dictionary<string, IFeatureToggleRepository> toggleRepositoryDictionary, Dictionary<string, bool> toggleGlobalSettingDictionary)
-        {
-            this.toggleRepositoryDictionary = toggleRepositoryDictionary;
-            this.toggleGlobalSettingDictionary = toggleGlobalSettingDictionary;
-        }
-
-        public IFeatureToggle GetFeatureToggle(string featureName, bool reversed)
-        {
-            bool statusFromRepository = false;
-            try
-            {
-                statusFromRepository = toggleRepositoryDictionary[featureName].GetToggleStatus(featureName);
-             
-            }
-            catch (KeyNotFoundException)
-            {
-             
-            }
-            return new FeatureToggle(reversed ? !statusFromRepository : statusFromRepository);
-        }
-
-        public IConditionFeatureToggle GetConditionFeatureToggle(string featureName, bool reversed)
-        {
-            var featureToggle = GetFeatureToggle(featureName, reversed);
-
-            var globalSetting = false;
-            try
-            {
-                globalSetting = toggleGlobalSettingDictionary[featureName];
-            }
-            catch (KeyNotFoundException)
-            {
-            }
-
-            return !reversed ? new ConditionFeatureToggle(featureToggle, globalSetting) : new ConditionFeatureToggle(featureToggle, !globalSetting);
-        }
-
-        public IFeatureToggle GetFeatureToggle(string featureName)
-        {
-            return GetFeatureToggle(featureName, false);
-        }
-
-        public IConditionFeatureToggle GetConditionFeatureToggle(string featureName)
-        {
-            return GetConditionFeatureToggle(featureName, false);
-        }
     }
 
     internal class StaticToggleRepository : IFeatureToggleRepository
     {
-        private readonly Dictionary<string, bool> toggleValues;
+        private readonly Dictionary<string, bool> _toggleValues;
 
         public StaticToggleRepository(Dictionary<string, bool> values)
         {
-            toggleValues = values;
+            _toggleValues = values;
         }
+
+        #region IFeatureToggleRepository Members
 
         public bool GetToggleStatus(string toggleName)
         {
-            return toggleValues[toggleName];
+            return _toggleValues[toggleName];
         }
+
+        #endregion
     }
 }

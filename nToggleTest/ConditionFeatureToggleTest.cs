@@ -9,7 +9,7 @@ namespace nToggleTest
         [TestMethod]
         public void RunActionIfGlobalOnShouldRunActionWhenGlobalIsOn()
         {
-            var featureToggle = new ConditionFeatureToggle(true, true);
+            var featureToggle = new ConditionalFeatureToggle(true, true);
 
             bool actionWasRun = false;
             featureToggle.RunActionIfGlobalOn(() => { actionWasRun = true; });
@@ -19,7 +19,7 @@ namespace nToggleTest
         [TestMethod]
         public void RunActionIfGlobalOnShouldNotRunActionWhenGlobalIsOff()
         {
-            var featureToggle = new ConditionFeatureToggle(true, false);
+            var featureToggle = new ConditionalFeatureToggle(true, false);
 
             bool actionWasRun = false;
             featureToggle.RunActionIfGlobalOn(() => { actionWasRun = true; });

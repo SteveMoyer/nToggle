@@ -2,7 +2,7 @@
 
 namespace nToggle
 {
-    public interface IConditionFeatureToggle : IFeatureToggle
+    public interface IConditionalFeatureToggle : IFeatureToggle
     {
         bool IsGlobalOn { get; }
         void RunActionIfGlobalOn(Action onAction);

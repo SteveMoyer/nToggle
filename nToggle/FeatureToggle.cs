@@ -4,11 +4,11 @@ namespace nToggle
 {
     public class FeatureToggle : IFeatureToggle
     {
-        private readonly bool isOn;
+        private readonly bool _isOn;
 
         public FeatureToggle(bool isOn)
         {
-            this.isOn = isOn;
+            _isOn = isOn;
         }
 
         #region IFeatureToggle Members
@@ -27,7 +27,7 @@ namespace nToggle
 
         public bool IsOn
         {
-            get { return isOn; }
+            get { return _isOn; }
         }
 
         #endregion
