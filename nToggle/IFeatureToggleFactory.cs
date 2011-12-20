@@ -4,7 +4,7 @@
     {
         IFeatureToggle GetFeatureToggle(string featureName, bool reversed);
         IFeatureToggle GetFeatureToggle(string featureName);
-        IConditionalFeatureToggle GetConditionFeatureToggle(string featureName, bool reversed);
-        IConditionalFeatureToggle GetConditionFeatureToggle(string featureName);
+        IConditionalFeatureToggle GetConditionalFeatureToggle(string featureName, bool reversed);
+        IConditionalFeatureToggle GetConditionalFeatureToggle(string featureName);
     }
 }

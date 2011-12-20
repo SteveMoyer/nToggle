@@ -71,7 +71,7 @@ namespace nToggleTest
             var featureName = "condition";
             toggleGlobalSettingDictionary.Add(featureName, true);
             toggleRepositoryDictionary.Add(featureName, repo.Object);
-            Assert.IsTrue(factory.GetConditionFeatureToggle(featureName).IsGlobalOn);
+            Assert.IsTrue(factory.GetConditionalFeatureToggle(featureName).IsGlobalOn);
         }
 
         [Test]
@@ -80,7 +80,7 @@ namespace nToggleTest
             var featureName = "condition";
             toggleGlobalSettingDictionary.Add(featureName, false);
             toggleRepositoryDictionary.Add(featureName, repo.Object);
-            Assert.IsTrue(factory.GetConditionFeatureToggle(featureName, true).IsGlobalOn);
+            Assert.IsTrue(factory.GetConditionalFeatureToggle(featureName, true).IsGlobalOn);
         }
 
         [Test]
@@ -89,7 +89,7 @@ namespace nToggleTest
             var featureName = "condition";
             toggleGlobalSettingDictionary.Add(featureName, true);
             toggleRepositoryDictionary.Add(featureName, repo.Object);
-            Assert.IsFalse(factory.GetConditionFeatureToggle(featureName, true).IsGlobalOn);
+            Assert.IsFalse(factory.GetConditionalFeatureToggle(featureName, true).IsGlobalOn);
         }
 
         [Test]
@@ -98,19 +98,19 @@ namespace nToggleTest
             var featureName = "condition";
             toggleGlobalSettingDictionary.Add(featureName, false);
             toggleRepositoryDictionary.Add(featureName, repo.Object);
-            Assert.IsFalse(factory.GetConditionFeatureToggle(featureName).IsGlobalOn);
+            Assert.IsFalse(factory.GetConditionalFeatureToggle(featureName).IsGlobalOn);
         }
 
         [Test]
         public void IsGlobalOnShouldReturnFaleWhenItIsNotSetInConfig()
         {
-            Assert.IsFalse(factory.GetConditionFeatureToggle("NotExist").IsGlobalOn);
+            Assert.IsFalse(factory.GetConditionalFeatureToggle("NotExist").IsGlobalOn);
         }
 
         [Test]
         public void IsGlobalOnShouldReturnTrueWhenItIsNotSetInConfigAndNeedToBeReversed()
         {
-            Assert.IsTrue(factory.GetConditionFeatureToggle("NotExist", true).IsGlobalOn);
+            Assert.IsTrue(factory.GetConditionalFeatureToggle("NotExist", true).IsGlobalOn);
         }
     }
 }

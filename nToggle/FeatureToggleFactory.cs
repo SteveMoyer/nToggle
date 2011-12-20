@@ -40,7 +40,7 @@ namespace nToggle
             return new FeatureToggle(reversed ? !statusFromRepository : statusFromRepository);
         }
 
-        public IConditionalFeatureToggle GetConditionFeatureToggle(string featureName, bool reversed)
+        public IConditionalFeatureToggle GetConditionalFeatureToggle(string featureName, bool reversed)
         {
             IFeatureToggle featureToggle = GetFeatureToggle(featureName, reversed);
 
@@ -60,9 +60,9 @@ namespace nToggle
             return GetFeatureToggle(featureName, false);
         }
 
-        public IConditionalFeatureToggle GetConditionFeatureToggle(string featureName)
+        public IConditionalFeatureToggle GetConditionalFeatureToggle(string featureName)
         {
-            return GetConditionFeatureToggle(featureName, false);
+            return GetConditionalFeatureToggle(featureName, false);
         }
 
         #endregion
